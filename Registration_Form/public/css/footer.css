@@ -11,18 +11,27 @@
   justify-content: space-around;
   align-items: center;
   height: 145px;
+  background-color: #e6e6e6;
 }
 
 .col {
-  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  background-color: #c4bfbf;
+  height: 135px;
 }
 
 .col p {
-  margin: 5px 0;
+  margin: 0px 0;
+  font-size:smaller;
+  font-weight: 400;
+}
+
+.col p:hover{
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .socialMedia {
