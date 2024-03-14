@@ -1,7 +1,7 @@
 .body {
   padding-top: 56px;
 }
-navbar {
+.navbar {
   width: 100vw;
   display: flex;
   flex-direction: row;
@@ -36,3 +36,11 @@ navbar {
   width: 400px;
   margin-right: 0px;
 }
+
+
+/* Home
+Shop / Products
+Categories
+Offers / Deals
+About Us
+Contact Us */
