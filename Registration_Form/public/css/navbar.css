@@ -8,6 +8,7 @@
   position: fixed;
   top: 0;
   z-index: 1000;
+  border-bottom: 1.5px solid black;
 }
 
 .navbar-brand {
@@ -35,6 +36,10 @@
 .container-fluid {
   width: 400px;
   margin-right: 0px;
+}
+
+.dropdown {
+  margin-right: 30px;
 }
 
 

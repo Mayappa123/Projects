@@ -1,7 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../../public/css/navbar.css">
+</head>
+<body>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light cols-12" style="height: 60px; position: fixed; top: 0px; width: 100vw;">
     <div class="container">
-      <img class="navbar-brand" style="height: 70px;" src="../../public/images/shopcart.jpg"></img>
+      <img class="navbar-brand"  src="../../public/images/shopcart.jpg"></img>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
@@ -17,7 +26,6 @@
           <li class="nav-item">
             <a class="nav-link" href="/services">Offers</a>
           </li>
-        
           <li class="nav-item">
             <a class="nav-link" href="/user">About</a>
           </li>
@@ -30,21 +38,24 @@
 
     <div class="container-fluid">
       <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control me-2" id="searcBox" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>
-    <div class="dropdown" style="margin-right: 40px;">
-  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    <i class="fa-solid fa-user"></i>
-  </button>
-  <ul class="dropdown-menu" >
-    <li><a class="dropdown-item" href="#">Log In</a></li>
-    <li><a class="dropdown-item" href="#">Sign In</a></li>
-    <li><a class="dropdown-item" href="#">Log Out</a></li>
-  </ul>
-</div>
-  </nav>
+
+    <div class="dropdown" >
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fa-solid fa-user"></i>
+      </button>
+     <ul class="dropdown-menu" >
+      <li><a class="dropdown-item" href="#">Log In</a></li>
+      <li><a class="dropdown-item" href="#">Sign In</a></li>
+      <li><a class="dropdown-item" href="#">Log Out</a></li>
+    </ul>
+  </div>
+</nav>
+</body>
+</html>
 
 
 
