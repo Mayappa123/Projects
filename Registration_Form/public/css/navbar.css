@@ -1,11 +1,15 @@
-.navbar {
-  widows: 100vw;
+.body {
+  padding-top: 56px;
+}
+navbar {
+  width: 100vw;
   display: flex;
   flex-direction: row;
   position: fixed;
   top: 0;
-  left: 0;
+  z-index: 1000;
 }
+
 .navbar-brand {
   height: 60px;
   cursor: pointer;
@@ -15,36 +19,20 @@
   color: black;
 }
 
-ul li a:hover {
-  background-color: blue;
-  color: white;
-}
-
-.navbar-nav {
-    padding-top: 0px;
-    padding-bottom: 0px;
-}
-
-
-.navbar {
-  padding-top: 0px; /* Adjust top padding */
-  padding-bottom: 0px; /* Adjust bottom padding */
-  width: 100%;
+.navbar-nav .navbar .nav-link {
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 .navbar-brand img {
-  height: 30px; /* Adjust logo height */
+  height: 30px;
 }
 
-.navbar-nav .nav-link {
-  padding-top: 0px; /* Adjust top padding for nav links */
-  padding-bottom: 0px; /* Adjust bottom padding for nav links */
-  font-size: 14px; /* Adjust font size for nav links */
+.nav-link {
+  font-size: 14px;
 }
 
-.container-fluid{
+.container-fluid {
   width: 400px;
- margin-right: 0px;
+  margin-right: 0px;
 }
- 
-

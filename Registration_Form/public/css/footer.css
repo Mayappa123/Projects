@@ -1,21 +1,22 @@
 @import url("https://fonts.googleapis.com/css?family=IBM%20Plex%20Sans:500|IBM%20Plex%20Sans:300");
 
 #footer {
+  background-color: black;
   height: 200px;
   width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding-bottom: 0px;
-
 }
 
 .col1 .col2 .col3 {
-  flex: 1;
+  width: 200px;
   margin: 0 10px;
 }
 .col1 {
-  background-color: aquamarine;
+  background-color: rgb(62, 56, 56);
+  color: white;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -24,7 +25,7 @@
 }
 
 .col2 {
-  background-color: antiquewhite;
+  background-color: rgb(145, 145, 145);
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -33,7 +34,7 @@
 }
 
 .col3 {
-  background-color: beige;
+  background-color: rgb(145, 145, 145);
   border-radius: 20px;
   display: flex;
   flex-direction: column;
