@@ -12,11 +12,19 @@ app.engine("ejs", ejsMate);
 
 
 app.get("/", (req, res) => {
-  res.render("register.ejs");
+  res.render("product/product.ejs");
 });
 
 app.get("/about", (req, res) => {
   res.render("users/about.ejs");
+});
+
+app.get("/login", (req, res) => {
+  res.render("users/login.ejs");
+});
+
+app.get("/signup", (req, res) => {
+  res.render("users/signup.ejs");
 });
 
 app.listen(port, () => {
