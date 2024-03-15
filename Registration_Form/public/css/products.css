@@ -21,7 +21,7 @@ h1 {
 }
 
 .product {
-    width: 22%;
+    width: 20%;
     margin: 10px;
     padding: 5px;
     border: 1px solid #ddd;
@@ -35,24 +35,28 @@ h1 {
     cursor: pointer;
 }
 
+
+
 .product img {
     display: block;
     margin: 0 auto;
-    width: 70%;
-    height: 50%;
+    width: 100%; /* Adjust width as needed */
+    height: auto; /* Automatically adjust height to maintain aspect ratio */
+    max-width: 100px; /* Set maximum width for the image */
+    max-height: 100px; /* Set maximum height for the image */
     border-radius: 8px;
     object-fit: cover;
 }
 
-.product h5 {
+.product h6 {
     text-align: center;
-    margin-top: 10px;
+    margin: 8px 0 0 0;
     font-size: 18px;
 }
 
 .product p {
-    margin-top: 10px;
-    font-size: 14px;
+    margin: 8px 0 0 0;
+    font-size: 10px;
 }
 
 @media screen and (max-width: 768px) {
