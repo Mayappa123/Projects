@@ -1,0 +1,90 @@
+/* products.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin-top: 60px;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 20px auto;
+    display: inline-block;
+    margin-top: 70px;
+}
+
+.product {
+    width: 22%;
+    margin: 10px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.product:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+}
+
+.product img {
+    display: block;
+    margin: 0 auto;
+    width: 70%;
+    height: 50%;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.product h5 {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.product p {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+@media screen and (max-width: 768px) {
+    .product {
+        width: 45%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .product {
+        width: 90%;
+    }
+}
+
+
+.products {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px auto;
+}
+
+
+
+@media screen and (max-width: 992px) {
+    .product {
+        width: calc(50% - 20px);
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .product {
+        width: calc(100% - 20px);
+    }
+}

@@ -1,5 +1,22 @@
 <% layout("/layouts/boilerplate") %>
-
+<head>
+  <link rel="stylesheet" type="text/css" href="../../public/css/products.css" />
+</head>
 <body>
-    
+  <div class="products">
+ 
+    <% products.forEach(product => { %>
+
+    <div class="product">
+      <img src="<%= product.image.url %>" alt="<%= product.name %>" />
+      <h5><%= product.name %></h5>
+      <p><%= product.description %></p>
+      <p><b>Price: $</b><%= product.price %></p>
+      <p><b>Category: </b><%= product.category %></p>
+    </div>
+
+  <% }); %>
+
+  </div>
+  
 </body>

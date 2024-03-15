@@ -1,9 +1,8 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const port = 8000;
 const app = express();
-const User = require("./models/user");
 const bodyParser = require("body-parser");
+const sampleProducts = require("./init/data");
 const ejsMate = require("ejs-mate");
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -11,8 +10,8 @@ app.use(express.static(__dirname));
 app.engine("ejs", ejsMate);
 
 
-app.get("/", (req, res) => {
-  res.render("product/product.ejs");
+app.get("/products", (req, res) => {
+  res.render("product/products.ejs", { products: sampleProducts.data });
 });
 
 app.get("/about", (req, res) => {
