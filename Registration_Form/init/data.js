@@ -7,7 +7,7 @@ const sampleProducts = [
     name: "Coca-Cola",
     description:
       "The iconic fizzy drink loved worldwide, offering a refreshing blend of cola flavor.",
-    price: 100,
+    quantity: 100,
     category: "Food & Groceries",
   },
   {
@@ -18,7 +18,7 @@ const sampleProducts = [
     name: "Kellogg's Corn Flakes",
     description:
       "Crunchy, golden flakes made from corn, a nutritious breakfast option.",
-    price: 100,
+    quantity: 100,
     category: "Food & Groceries",
   },
   {
@@ -28,7 +28,7 @@ const sampleProducts = [
     },
     name: "Lays Potato Chips",
     description: "Crispy, flavorful, classic snack. Enjoy and take taste",
-    price: 100,
+    quantity: 100,
     category: "Food & Groceries",
   },
   {
@@ -39,8 +39,8 @@ const sampleProducts = [
     name: "Maggie instant Noodles",
     description:
       "A quick and convenient meal option loved by all ages, offering delicious noodles in a variety of flavors.",
-    price: 100,
-    category: "Food & Groceries",
+    quantity: 100,
+    category: "Home Goods",
   },
   {
     image: {
@@ -50,8 +50,8 @@ const sampleProducts = [
     name: "Coca-Cola",
     description:
       "The iconic fizzy drink loved worldwide, offering a refreshing blend of cola flavor.",
-    price: 100,
-    category: "Food & Groceries",
+    quantity: 100,
+    category: "Electronics",
   },
   {
     image: {
@@ -61,7 +61,7 @@ const sampleProducts = [
     name: "Kellogg's Corn Flakes",
     description:
       "Crunchy, golden flakes made from corn, a nutritious breakfast option.",
-    price: 100,
+    quantity: 100,
     category: "Food & Groceries",
   },
   {
@@ -71,8 +71,8 @@ const sampleProducts = [
     },
     name: "Lays Potato Chips",
     description: "Crispy, flavorful, classic snack. Enjoy and take taste",
-    price: 100,
-    category: "Food & Groceries",
+    quantity: 100,
+    category: "Beauty Products",
   },
   {
     image: {
@@ -82,8 +82,8 @@ const sampleProducts = [
     name: "Maggie instant Noodles",
     description:
       "A quick and convenient meal option loved by all ages, offering delicious noodles in a variety of flavors.",
-    price: 100,
-    category: "Food & Groceries",
+    quantity: 100,
+    category: "Electronics",
   },
   {
     image: {
@@ -93,8 +93,8 @@ const sampleProducts = [
     name: "Coca-Cola",
     description:
       "The iconic fizzy drink loved worldwide, offering a refreshing blend of cola flavor.",
-    price: 100,
-    category: "Food & Groceries",
+    quantity: 100,
+    category: "Beauty Products",
   },
   {
     image: {
@@ -104,8 +104,8 @@ const sampleProducts = [
     name: "Kellogg's Corn Flakes",
     description:
       "Crunchy, golden flakes made from corn, a nutritious breakfast option.",
-    price: 100,
-    category: "Food & Groceries",
+    quantity: 100,
+    category: "Electronics",
   },
   {
     image: {
@@ -114,8 +114,8 @@ const sampleProducts = [
     },
     name: "Lays Potato Chips",
     description: "Crispy, flavorful, classic snack. Enjoy and take taste",
-    price: 100,
-    category: "Food & Groceries",
+    quantity: 100,
+    category: "Home Goods",
   },
   {
     image: {
@@ -125,8 +125,8 @@ const sampleProducts = [
     name: "Maggie instant Noodles",
     description:
       "A quick and convenient meal option loved by all ages, offering delicious noodles in a variety of flavors.",
-    price: 100,
-    category: "Food & Groceries",
+    quantity: 100,
+    category: "Health & Wellness",
   },
   {
     image: {
@@ -136,8 +136,8 @@ const sampleProducts = [
     name: "Coca-Cola",
     description:
       "The iconic fizzy drink loved worldwide, offering a refreshing blend of cola flavor.",
-    price: 100,
-    category: "Food & Groceries",
+    quantity: 100,
+    category: "Toys & Games",
   },
   {
     image: {
@@ -147,8 +147,8 @@ const sampleProducts = [
     name: "Kellogg's Corn Flakes",
     description:
       "Crunchy, golden flakes made from corn, a nutritious breakfast option.",
-    price: 100,
-    category: "Food & Groceries",
+    quantity: 100,
+    category: "Books & Media",
   },
   {
     image: {
@@ -157,8 +157,8 @@ const sampleProducts = [
     },
     name: "Lays Potato Chips",
     description: "Crispy, flavorful, classic snack. Enjoy and take taste",
-    price: 100,
-    category: "Food & Groceries",
+    quantity: 100,
+    category: "Toys & Games",
   },
   {
     image: {
@@ -168,8 +168,8 @@ const sampleProducts = [
     name: "Maggie instant Noodles",
     description:
       "A quick and convenient meal option loved by all ages, offering delicious noodles in a variety of flavors.",
-    price: 100,
-    category: "Food & Groceries",
+    quantity: 100,
+    category: "Stationery & Office Supplies",
   },
 ];
 

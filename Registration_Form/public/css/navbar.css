@@ -2,45 +2,53 @@
   padding-top: 56px;
 }
 .navbar {
-  width: 100vw;
   display: flex;
-  flex-direction: row;
-  position: fixed;
-  top: 0;
-  z-index: 1000;
-  border-bottom: 1.5px solid black;
-}
-
-.navbar-brand {
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #f8f9fa;
   height: 60px;
-  cursor: pointer;
+  width: 100%;
 }
-
-.nav-link {
-  color: black;
+.container {
+  margin: 0 10px;
 }
-
-.navbar-nav .navbar .nav-link {
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
-
-.navbar-brand img {
-  height: 30px;
-}
-
-.nav-link {
-  font-size: 14px;
-}
-
-.container-fluid {
-  width: 400px;
+.logo {
+  max-height: 65px;
   margin-right: 0px;
+
 }
 
-.dropdown {
-  margin-right: 30px;
+.navbar-nav {
+  display: flex;
+  align-items: center;
 }
+
+.navbar-nav li {
+  list-style-type: none;
+  margin: 0 10px;
+}
+
+.navbar-nav li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav li a:hover {
+  color: #007bff;
+}
+
+.navbar-nav {
+  margin-left: auto;
+}
+
+.navbar-nav .au {
+  margin-left: 10px;
+}
+
 
 
 /* Home
