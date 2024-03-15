@@ -32,6 +32,7 @@ h1 {
 
 .product:hover {
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
 }
 
 .product img {

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema({
+  
   image: {
     url: String,
     filename: String,
@@ -11,7 +12,7 @@ const productSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    maxlength:60,
+    maxlength: 60,
     required: true,
   },
   price: {
@@ -27,3 +28,10 @@ const productSchema = new mongoose.Schema({
 const Product = mongoose.model("Product", productSchema);
 
 module.exports = Product;
+
+
+/*id: {
+    type: String,
+    default: uuidv4, 
+    required: true,
+  },*/

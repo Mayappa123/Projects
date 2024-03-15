@@ -13,6 +13,9 @@ app.engine("ejs", ejsMate);
 app.get("/products", (req, res) => {
   res.render("product/products.ejs", { products: sampleProducts.data });
 });
+app.get("/", (req, res) => {
+  res.render("product/products.ejs", { products: sampleProducts.data });
+});
 
 app.get("/about", (req, res) => {
   res.render("users/about.ejs");
