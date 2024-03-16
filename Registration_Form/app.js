@@ -3,7 +3,8 @@ const port = 8000;
 const app = express();
 const bodyParser = require("body-parser");
 const sampleProducts = require("./init/data");
-// const Product = require("./models/product")
+const Product = require("./models/product");
+const User = require("./models/user");
 const ejsMate = require("ejs-mate");
 const initDB = require("./init/db");
 
@@ -34,7 +35,7 @@ app.get("/login", (req, res) => {
   res.render("users/login.ejs");
 });
 
-app.get("/signup", (req, res) => {
+app.get("/user/register", (req, res) => {
   res.render("users/signup.ejs");
 });
 
@@ -42,13 +43,38 @@ app.get("/product/new", (req, res) => {
   res.render("product/new.ejs");
 });
 
-app.post("/product/add", async (req, res) => {
-  let product = req.body;
-  console.log(product);
-  console.log(req.body);
+app.post("/signup", async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
+    const newUser = new User({
+      username,
+      email,
+      password,
+    });
+    const savedUser = await newUser.save();
+    res.status(201).json(savedUser);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
 });
 
-
+app.post("/product/add", async (req, res) => {
+  console.log(req.body);
+  try {
+    const { productname, description, quantity, category, image } = req.body;
+    const newProduct = new Product({
+      productname,
+      description,
+      quantity,
+      category,
+      image,
+    });
+    const savedProduct = await newProduct.save();
+    res.status(201).json(savedProduct);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
 
 app.listen(port, () => {
   console.log("Hi this is my app...");
