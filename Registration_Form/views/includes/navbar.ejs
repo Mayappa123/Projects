@@ -1,29 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="../../public/css/navbar.css" />
-  </head>
-  <body>
+<head>
+  <link rel="stylesheet" href="../../public/css/navbar.css">
+</head>
     <nav
       class="navbar navbar-expand-lg navbar-light bg-light cols-12"
-      style="height: 60px; position: fixed; top: 0px; width: 100vw"
+      style="height: 55px; position: fixed; top: 0px; width: 100vw"
     >
       <div class="container">
-        <ul>
-          <li>
-            <i class="fa-solid fa-bars"></i>
-          </li>
-          <li>
-            <a href=""
-              ><img
-                class="navbar-brand logo"
-                src="../../public/images/shopcart.jpg"
-            /></a>
-          </li>
-        </ul>
+        <i class="hamburger fa-solid fa-bars"></i>
+
+        <img class="navbar-brand logo" src="../../public/images/shopcart.jpg" />
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
@@ -33,24 +18,16 @@
             <li class="nav-item">
               <a class="nav-link" href="/products">Products</a>
             </li>
-            <li class="nav-item">
+            <li >
               <a class="nav-link" href="/user">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/user">Contact</a>
+              <input type="text" class="search" placeholder="Q">
             </li>
-            <li>
-              <a class="au" href="/login">Login</a>
-            </li>
-            <li>
-              <a class="au" href="">Logout</a>
-            </li>
-            <li>
-              <a class="au" href="/signup">Signup</a>
-            </li>
+            
+           
           </ul>
         </div>
       </div>
     </nav>
-  </body>
-</html>
+
