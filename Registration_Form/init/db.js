@@ -23,4 +23,4 @@ const initDB = async () => {
     console.log("Data initialized successfully...")
 }
 
-module.exports = connectDB;
+module.exports = initDB;
