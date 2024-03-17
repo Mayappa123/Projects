@@ -1,5 +1,8 @@
+const { v4: uuidv4 } = require("uuid");
+
 const sampleProducts = [
   {
+    id: uuidv4(),
     image: "https://m.media-amazon.com/images/I/41eN+JCtNiL.jpg",
     productname: "Coca-Cola",
     description:
@@ -8,6 +11,7 @@ const sampleProducts = [
     category: "Food & Groceries",
   },
   {
+    id: uuidv4(),
     image: "https://m.media-amazon.com/images/I/41eN+JCtNiL.jpg",
     productname: "Kellogg's Corn Flakes",
     description:
@@ -16,6 +20,7 @@ const sampleProducts = [
     category: "Food & Groceries",
   },
   {
+    id: uuidv4(),
     image: "https://m.media-amazon.com/images/I/813axPlVxBL.jpg",
     productname: "Lays Potato Chips",
     description: "Crispy, flavorful, classic snack. Enjoy and take taste",
@@ -23,6 +28,7 @@ const sampleProducts = [
     category: "Food & Groceries",
   },
   {
+    id: uuidv4(),
     image: "https://m.media-amazon.com/images/I/41eN+JCtNiL.jpg",
     productname: "Maggie instant Noodles",
     description:
@@ -31,6 +37,7 @@ const sampleProducts = [
     category: "Home Goods",
   },
   {
+    id: uuidv4(),
     image: "https://m.media-amazon.com/images/I/41eN+JCtNiL.jpg",
     productname: "Coca-Cola",
     description:
@@ -39,6 +46,7 @@ const sampleProducts = [
     category: "Electronics",
   },
   {
+    id: uuidv4(),
     image: "https://m.media-amazon.com/images/I/41eN+JCtNiL.jpg",
     productname: "Kellogg's Corn Flakes",
     description:
@@ -47,6 +55,7 @@ const sampleProducts = [
     category: "Food & Groceries",
   },
   {
+    id: uuidv4(),
     image: "https://m.media-amazon.com/images/I/813axPlVxBL.jpg",
     productname: "Lays Potato Chips",
     description: "Crispy, flavorful, classic snack. Enjoy and take taste",
@@ -54,6 +63,7 @@ const sampleProducts = [
     category: "Beauty Products",
   },
   {
+    id: uuidv4(),
     image: "https://m.media-amazon.com/images/I/41eN+JCtNiL.jpg",
     productname: "Maggie instant Noodles",
     description:
@@ -62,6 +72,7 @@ const sampleProducts = [
     category: "Electronics",
   },
   {
+    id: uuidv4(),
     image: "https://m.media-amazon.com/images/I/41eN+JCtNiL.jpg",
     productname: "Coca-Cola",
     description:
@@ -70,6 +81,7 @@ const sampleProducts = [
     category: "Beauty Products",
   },
   {
+    id: uuidv4(),
     image: "https://m.media-amazon.com/images/I/41eN+JCtNiL.jpg",
     productname: "Kellogg's Corn Flakes",
     description:
@@ -78,6 +90,7 @@ const sampleProducts = [
     category: "Electronics",
   },
   {
+    id: uuidv4(),
     image: "https://m.media-amazon.com/images/I/813axPlVxBL.jpg",
     productname: "Lays Potato Chips",
     description: "Crispy, flavorful, classic snack. Enjoy and take taste",
@@ -85,6 +98,7 @@ const sampleProducts = [
     category: "Home Goods",
   },
   {
+    id: uuidv4(),
     image: "https://m.media-amazon.com/images/I/41eN+JCtNiL.jpg",
     productname: "Maggie instant Noodles",
     description:
@@ -93,6 +107,7 @@ const sampleProducts = [
     category: "Health & Wellness",
   },
   {
+    id: uuidv4(),
     image: "https://m.media-amazon.com/images/I/41eN+JCtNiL.jpg",
     productname: "Coca-Cola",
     description:
@@ -101,6 +116,7 @@ const sampleProducts = [
     category: "Toys & Games",
   },
   {
+    id: uuidv4(),
     image: "https://m.media-amazon.com/images/I/41eN+JCtNiL.jpg",
     productname: "Kellogg's Corn Flakes",
     description:
@@ -109,6 +125,7 @@ const sampleProducts = [
     category: "Books & Media",
   },
   {
+    id: uuidv4(),
     image: "https://m.media-amazon.com/images/I/813axPlVxBL.jpg",
     productname: "Lays Potato Chips",
     description: "Crispy, flavorful, classic snack. Enjoy and take taste",
@@ -116,6 +133,7 @@ const sampleProducts = [
     category: "Toys & Games",
   },
   {
+    id: uuidv4(),
     image: "https://m.media-amazon.com/images/I/41eN+JCtNiL.jpg",
     productname: "Maggie instant Noodles",
     description:

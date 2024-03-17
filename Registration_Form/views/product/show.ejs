@@ -1,0 +1,22 @@
+<% layout("/layouts/boilerplate") %>
+<head>
+  <link rel="stylesheet" type="text/css" href="../../public/css/products.css" />
+</head>
+<body>
+  <div class="container">
+    <h2>Product Details</h2>
+    <div class="card">
+      <img src="<%= product.image %>" class="card-img-top" alt="<%= product.productname %>">
+      <div class="card-body">
+        <h5 class="card-title"><%= product.productname %></h5>
+        <p class="card-text"><%= product.description %></p>
+        <p class="card-text"><b>Quantity:</b> <%= product.quantity %></p>
+        <p class="card-text"><b>Category:</b> <%= product.category %></p>
+        <div class="btn-group" role="group">
+          <a href="/edit/<%= product._id %>" class="btn btn-primary">Edit</a>
+          <a href="/delete/<%= product._id %>" class="btn btn-danger">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

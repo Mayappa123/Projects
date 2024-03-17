@@ -6,7 +6,7 @@ const MONGO_URL = "mongodb://127.0.0.1:27017/shopcart";
 
 main()
   .then(() => {
-    console.log("connected");
+    console.log("app successfully connected with database.");
   })
   .catch((err) => {
     console.log(err, "err to connect database");
