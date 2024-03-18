@@ -51,8 +51,27 @@ app.get("/product/new", (req, res) => {
 
 
 app.get("/product/edit", (req, res) => {
-  res.render("./product/edit.ejs")
+  res.render("./product/edit.ejs", {product})
 })
+
+
+app.post("/signup", async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
+    const newUser = new User({
+      username,
+      email,
+      password,
+    });
+    const savedUser = await newUser.save();
+    console.log(savedUser);
+    console.log("new user created...");
+    res.redirect("/products");
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
 
 
 // GET request to display a single product
