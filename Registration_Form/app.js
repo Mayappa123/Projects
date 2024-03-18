@@ -40,7 +40,7 @@ app.get("/login", (req, res) => {
 });
 
 
-app.get("/user/register", (req, res) => {
+app.get("/signup", (req, res) => {
   res.render("users/signup.ejs");
 });
 
