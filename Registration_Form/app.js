@@ -1,3 +1,5 @@
+//app.js
+
 const express = require("express");
 const port = 8000;
 const app = express();
@@ -9,7 +11,11 @@ const ejsMate = require("ejs-mate");
 const initDB = require("./init/db");
 const methodOverride = require("method-override");
 const path = require("path");
-
+const session = require("express-session");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const flash = require("connect-flash");
+const { isLoggedin } = require("./middleware");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -19,41 +25,71 @@ app.use(express.static(__dirname));
 app.engine("ejs", ejsMate);
 app.use(methodOverride("_method"));
 
+// Set up session middleware
+const sessionOptions = {
+  secret: "mayappa",
+  resave: false,
+  saveUninitialized: true,
+};
+app.use(session(sessionOptions));
+app.use(flash());
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.use((req, res, next) => {
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  res.locals.currUser = req.user;
+  next();
+});
+
+// const logRequest = (req, res, next) => {
+//   console.log(
+//     `[${new Date().toLocaleString()}] req made to : ${req.originalUrl}`
+//   );
+//   next();
+// };
+
+// app.use(logRequest);
 
 initDB()
   .then(() => {
     console.log("Database initialized");
+    app.listen(port, () => {
+      console.log(`Server is running on port ${port}`);
+    });
   })
   .catch((err) => {
     console.error("Error initializing database:", err);
   });
 
-
 app.get("/products", (req, res) => {
   res.render("product/products.ejs", { products: sampleProducts.data });
 });
-
-
 
 app.get("/login", (req, res) => {
   res.render("users/login.ejs");
 });
 
-
 app.get("/signup", (req, res) => {
+  //let {name = "anonymous"} = req.query;
+  //req.session.name = name;
+  //req.flash("success", "user registered succefully...");
   res.render("users/signup.ejs");
 });
 
-
-app.get("/product/new", (req, res) => {
-  res.render("product/new.ejs");
+app.get("/product/edit", (req, res) => {
+  res.render("./product/edit.ejs", { product });
 });
 
-
-app.get("/product/edit", (req, res) => {
-  res.render("./product/edit.ejs", {product})
-})
-
+app.get("/add", isLoggedin, (req, res) => {
+  res.render("product/new.ejs");
+});
 
 app.post("/signup", async (req, res) => {
   try {
@@ -63,16 +99,30 @@ app.post("/signup", async (req, res) => {
       email,
       password,
     });
-    const savedUser = await newUser.save();
-    console.log(savedUser);
-    console.log("new user created...");
-    res.redirect("/products");
+    const registeredUser = await User.register(newUser, password);
+    req.login(registeredUser, (err) => {
+      if (err) {
+        return next(err);
+      }
+      //req.flash("success", "Welcome to shopcart")
+      res.redirect("/products");
+    })
+    
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Internal Server Error" });
   }
 });
 
+app.post(
+  "/login",
+  passport.authenticate("local", {
+    failureRedirect: "/login",
+    failureFlash: true,
+  }),
+  async (req, res) => {
+    await res.redirect("/products");
+  }
+);
 
 // GET request to display a single product
 app.get("/product/:id", async (req, res) => {
@@ -82,77 +132,58 @@ app.get("/product/:id", async (req, res) => {
     if (!product) {
       return res.status(404).send("Product not found");
     }
-    res.render("product/show", { product }); 
+    res.render("product/show", { product });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
   }
 });
 
+//Create Product
+app.post("/add", isLoggedin, async (req, res) => {
+  const newProduct = new Product(req.body.product);
+  await newProduct.save();
+  //req.flash("success", "new product created...");
+  res.redirect("/products");
+});
 
-// GET request to render edit page for a product
-app.get('/edit/:id', async (req, res) => {
-  try {
-    const productId = req.params.id;
-    const product = await Product.findById(productId);
-    if (!product) {
-      return res.status(404).send('Product not found');
+// Edit Product
+app.get("/edit/:id", isLoggedin, async (req, res) => {
+  let { id } = req.params;
+  const product = await Product.findById(id);
+  if (!product) {
+    //req.flash("error", product doesnt exist in your shop);
+    res.redirect("/products");
+  }
+  res.render("/product/edit.ejs");
+});
+
+//Update Product
+app.put("/:id", isLoggedin, async (req, res) => {
+  let { id } = req.params;
+  await Product.findByIdAndUpdate(id, { ...req.body.product });
+  //req.flash("success", "Product updated...");
+  res.redirect(`/products/${id}`);
+});
+
+// Delete Product
+app.delete("/:id", isLoggedin, async (req, res) => {
+  let { id } = req.params;
+  let deletedListing = await Product.findByIdAndDelete(id);
+  console.log(deletedListing);
+  //req.flash("success", "Product deleted...");
+  res.redirect("/listing");
+});
+
+app.get("/logout", (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
     }
-    res.render('edit', { product });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Internal Server Error');
-  }
+    //req.flash("success", "you are logged out...");
+    res.redirect("/products");
+  });
 });
-
-
-// DELETE request to delete a product
-app.delete('/delete/:id', async (req, res) => {
-  try {
-    const productId = req.params.id;
-    await Product.findByIdAndDelete(productId);
-    res.redirect('/products'); // Redirect to product listing page
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Internal Server Error');
-  }
-});
-
-
-app.post("/signup", async (req, res) => {
-  try {
-    const { username, email, password } = req.body;
-    const newUser = new User({
-      username,
-      email,
-      password,
-    });
-    const savedUser = await newUser.save();
-    res.status(201).json(savedUser);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
-
-
-app.post("/product/add", async (req, res) => {
-  console.log(req.body);
-  try {
-    const { productname, description, quantity, category, image } = req.body;
-    const newProduct = new Product({
-      productname,
-      description,
-      quantity,
-      category,
-      image,
-    });
-    const savedProduct = await newProduct.save();
-    res.status(201).json(savedProduct);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
-
 
 app.listen(port, () => {
   console.log("app is running...");

@@ -1,65 +1,66 @@
-.body {
+/* .body {
   padding-top: 56px;
-}
+} */
+ /* Navbar.css */
+
 
 .navbar {
   height: 60px;
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: #ffffff; /* Navbar background color */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Navbar shadow */
-}
-
-/* .container {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  margin: 0 0;
-} */
+}
 
 .logo {
   max-height: 50px;
-  margin-left: 20px; /* Logo max height */
+  margin-left: 20px;
 }
 
-.hamburger {
- font-size: 22px;
- opacity: 0.7;
-}
-
-.user {
-  opacity: 0.7;
-  font-size: 22px;
-}
-
-@keyframes hoverAnimation {
-  0% {
-    font-size: 20px;
-    opacity: 0.7;
-  }
-  100% {
-    font-size: 25px;
-    opacity: 1;
-  }
-}
-
-.hamburger:hover {
- cursor: pointer;
- animation: hoverAnimation 0.3s ease forwards;
- 
+.search-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .search {
-  width: 700px;
-  margin: 100px;
+  width: 70%; /* Adjust the width as needed */
+  padding: 8px;
+}
+
+.hamburger {
+  font-size: 22px;
+  opacity: 0.7;
+  margin-right: 20px;
 }
 
 @media screen and (max-width: 576px) {
-  .container {
-    padding: 0 10px;
+  .logo {
+    margin-left: 10px;
+  }
+
+  .search {
+    margin: 0 auto;
+    align-items: center; /* Center the search container */
+  }
+
+  .hamburger {
+    margin-right: 10px; /* Move hamburger menu to the right */
   }
 }
+
+
+
+
+
+
+
+
 
 
 
