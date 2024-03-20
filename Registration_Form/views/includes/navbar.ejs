@@ -1,54 +1,23 @@
 <!-- Navbar.ejs -->
 
-<!-- <head>
-  <link rel="stylesheet" href="../../public/css/navbar.css" />
-</head>
-<nav
-  class="navbar navbar-expand-lg navbar-light bg-light cols-12"
-  style="height: 55px; position: fixed; top: 0px; width: 100vw"
->
-  <div class="container">
-    <img class="navbar-brand logo" src="../../public/images/shopcart.jpg" />
-
-    <input type="text" class="search" placeholder="Q" />
-    <a class="nav-link" href="/add">Add Product</a>
-    <div class="navbar-nav ms-auto">
-      <% if(!currUser) { %>
-      <a class="nav-link" href="/signup">Signup</a>
-      <a class="nav-link" href="/login">Login</a>
-      <% } %> <% if(currUser) { %>
-      <a class="nav-link" href="logout">Logout</a>
-      <% } %>
-    </div>
-  </div>
-</nav> -->
-
-
-
-
 <head>
   <link rel="stylesheet" href="../../public/css/navbar.css" />
 </head>
 <nav class="navbar navbar-expand-lg navbar-light bg-light cols-12">
-  <div class="container">
-    <img class="navbar-brand logo" src="../../public/images/shopcart.jpg" />
+  <img class="navbar-brand logo" src="../../public/images/shopcart.jpg" />
+  <a class="nav-link" href="/add">Add Product</a>
 
-    <!-- Hamburger icon for small screens -->
-    <i class="hamburger fa-solid fa-bars"></i>
+  <!-- Hamburger icon for small screens -->
+  <i class="hamburger fa-solid fa-bars"></i>
 
-    <!-- Search input -->
-    <input type="text" class="search" placeholder="Search" />
+  <input type="text" class="search" placeholder="Search" />
 
-    <!-- Links -->
-    <div class="navbar-nav ms-auto">
-      <% if(!currUser) { %>
-        <a class="nav-link" href="/signup">Signup</a>
-        <a class="nav-link" href="/login">Login</a>
-      <% } %> 
-      <% if(currUser) { %>
-        <a class="nav-link" href="logout">Logout</a>
-      <% } %>
-    </div>
+  <div class="navbar-nav ms-auto">
+    <% if(!currUser) { %>
+    <a class="nav-link" href="/signup">Signup</a>
+    <a class="nav-link" href="/login">Login</a>
+    <% } %> <% if(currUser) { %>
+    <a class="nav-link" href="logout">Logout</a>
+    <% } %>
   </div>
 </nav>
-

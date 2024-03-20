@@ -94,6 +94,11 @@ app.get("/add", isLoggedin, (req, res) => {
 app.post("/signup", async (req, res) => {
   try {
     const { username, email, password } = req.body;
+    if (!username || !email || !password) {
+      return res
+        .status(400)
+        .send("Username, email, and password are required.");
+    }
     const newUser = new User({
       username,
       email,
@@ -106,10 +111,10 @@ app.post("/signup", async (req, res) => {
       }
       //req.flash("success", "Welcome to shopcart")
       res.redirect("/products");
-    })
-    
+    });
   } catch (error) {
-    console.error(error);
+    console.log("error is -> ", error);
+     res.status(500).send("Internal Server Error");
   }
 });
 
@@ -141,6 +146,7 @@ app.get("/product/:id", async (req, res) => {
 
 //Create Product
 app.post("/add", isLoggedin, async (req, res) => {
+  console.log(req.body);
   const newProduct = new Product(req.body.product);
   await newProduct.save();
   //req.flash("success", "new product created...");
