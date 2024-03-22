@@ -11,22 +11,18 @@
   position: fixed;
   top: 0;
   margin: 0px 10px;
+  background-color: rgb(135, 135, 248) !important;
 }
 
 .logo {
-  max-height: 50px;
-  margin: 0px
-}
-
-.hamburger {
-  display: none;
-  font-size: 22px;
-  opacity: 0.7;
+  max-height: 60px;
+  margin: 0px;
+  padding: 0 10px;
 }
 
 .search {
-  width: 300px;
-  border-radius: 5px;
+  width: 650px;
+  border-radius: 2px;
   border: 1px solid #ccc;
 }
 
@@ -34,14 +30,15 @@
   display: flex;
 }
 
+.nav-link {
+  padding: 0 10px;
+}
 
+.glass {
+  display: none;
+}
 
 @media screen and (max-width: 768px) {
-  .hamburger {
-    display: block;
-    margin-right: 20px;
-  }
-
   .navbar-nav {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
@@ -56,10 +53,6 @@
   justify-content: space-around;
 }
 
-.navbar-brand {
-  margin-right: auto;
-}
-
 .navbar-nav {
   display: flex;
   align-items: center;
@@ -71,10 +64,28 @@
   }
 
   .navbar-nav {
-    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
   }
 
-  .hamburger {
-    margin-left: auto;
+  .navbar-nav .nav-link  {
+    padding: 0 5px;
+  }
+
+  .nav-link {
+    font-size: small;
+    padding: 0 2px;
+  }
+
+  .search {
+    display: none;
+  }
+
+  .glass {
+    display: inline-block;
+  }
+
+  .add {
+    padding-right: 0px;
   }
 }
