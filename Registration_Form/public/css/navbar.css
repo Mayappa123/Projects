@@ -38,7 +38,25 @@
   display: none;
 }
 
-@media screen and (max-width: 768px) {
+.cart {
+  position: relative; 
+  display: inline-block; 
+}
+
+
+
+.cartBadge {
+  font-size: 5px;
+  position: absolute; /* Position the badge absolutely */
+  top: -5px; /* Adjust top position to align with the top edge of the container */
+  right: -5px; /* Adjust right position to align with the right edge of the container */
+  background-color: red; /* Background color of the badge */
+  color: white; /* Text color of the badge */
+  border-radius: 50%; /* Make the badge circular */
+  padding: 5px; 
+}
+
+@media screen and (max-width: 768px) and (min-width: 576px) {
   .navbar-nav {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
