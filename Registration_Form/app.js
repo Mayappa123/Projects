@@ -129,7 +129,7 @@ app.post(
   }
 );
 
-// GET request to display a single product
+// Show Product
 app.get("/product/:id", async (req, res) => {
   try {
     const productId = req.params.id;
