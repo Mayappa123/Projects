@@ -45,22 +45,36 @@
 
 .cartBadge {
   font-size: 5px;
-  position: absolute; 
-  top: -7px; 
-  right: -8px; 
-  background-color: red; 
-  color: white; 
-  border-radius: 50%; 
+  position: absolute;
+  top: -7px;
+  right: -8px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
   padding: 5px;
 }
 
-@media screen and (max-width: 768px) and (min-width: 576px) {
-  .navbar-nav {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+@media screen and ((max-width: 768px) and (min-width: 576px)) {
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo {
+    position: fixed;
+    left: 10px;
+  }
+  .nav-link {
+    justify-content: center;
   }
 
-  .navbar-nav.active {
+  .navbar-nav {
     display: flex;
+    align-items: center;
+  }
+
+  .search {
+    width: 150px;
   }
 }
 
@@ -71,7 +85,7 @@
 
 .navbar-nav {
   display: flex;
-  align-items: center;
+  justify-content: center;
 }
 
 @media screen and (max-width: 576px) {
