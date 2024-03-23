@@ -1,4 +1,5 @@
 //db.js
+
 const mongoose = require("mongoose");
 const User = require("../models/user");
 const initData = require("./data.js");
