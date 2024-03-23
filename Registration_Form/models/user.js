@@ -9,13 +9,13 @@ const userSchema = new Schema({
   email: {
     type: String,
     unique: true,
-    required: true, 
+    required: true
   },
   
 });
 
 
-userSchema.plugin(passportLocalMongoose, { email: "email" });
+userSchema.plugin(passportLocalMongoose);
 const User = mongoose.model("User", userSchema);
 
 

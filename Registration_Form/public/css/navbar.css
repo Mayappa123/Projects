@@ -37,6 +37,7 @@
 .cart {
   position: relative;
   display: inline-block;
+  opacity: 0.7;
 }
 
 .cartBadge {

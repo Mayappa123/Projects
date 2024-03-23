@@ -1,7 +1,7 @@
 //app.js
 
 const express = require("express");
-const port = 8000;
+const port = 8090;
 const app = express();
 const bodyParser = require("body-parser");
 const sampleProducts = require("./init/data");
@@ -13,9 +13,10 @@ const methodOverride = require("method-override");
 const path = require("path");
 const session = require("express-session");
 const passport = require("passport");
-const LocalStrategy = require("passport-local");
+const LocalStrategy = require("passport-local").Strategy;
 const flash = require("connect-flash");
 const { isLoggedin } = require("./middleware");
+const { data } = require("./init/data");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -57,6 +58,10 @@ app.use((req, res, next) => {
 
 // app.use(logRequest);
 
+data.forEach((product) => {
+  //console.log(`Product Name: ${product.productname}, UUID: ${product.id}`);
+});
+
 initDB()
   .then(() => {
     console.log("Database initialized");
@@ -93,12 +98,7 @@ app.get("/add", isLoggedin, (req, res) => {
 
 app.post("/signup", async (req, res) => {
   try {
-    const { username, email, password } = req.body;
-    if (!username || !email || !password) {
-      return res
-        .status(400)
-        .send("Username, email, and password are required.");
-    }
+    const  {username, email, password}  = req.body;
     const newUser = new User({
       username,
       email,
@@ -114,7 +114,6 @@ app.post("/signup", async (req, res) => {
     });
   } catch (error) {
     console.log("error is -> ", error);
-     res.status(500).send("Internal Server Error");
   }
 });
 
