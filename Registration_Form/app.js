@@ -109,7 +109,7 @@ app.post("/signup", async (req, res) => {
       if (err) {
         return next(err);
       }
-      //req.flash("success", "Welcome to shopcart")
+      //req.flash("success", "Welcome to shopcart");
       res.redirect("/products");
     });
   } catch (error) {
