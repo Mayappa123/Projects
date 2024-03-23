@@ -15,13 +15,13 @@
     <span class=" cartBadge badge text-bg-success">4</span>
   </i>
 
-  <div class="navbar-nav">
+  <div class="navbar-nav authbox">
     <% if(!currUser) { %>
-    <a class="nav-link" href="/signup">Signup</a>
-    <a class="nav-link" href="/login">Login</a>
+    <a class="nav-link auth" href="/signup">Signup</a>
+    <a class="nav-link auth" href="/login">Login</a>
     <% } %> <% if(currUser) { %>
 
-    <a class="nav-link" href="logout">Logout</a>
+    <a class="nav-link auth" href="logout">Logout</a>
     <% } %>
   </div>
 </nav>
