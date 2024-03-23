@@ -113,7 +113,7 @@ app.post("/signup", async (req, res) => {
       res.redirect("/products");
     });
   } catch (error) {
-    console.log("error is -> ", error);
+    console.log("error : ", error);
   }
 });
 
