@@ -65,14 +65,12 @@ data.forEach((product) => {
 initDB()
   .then(() => {
     console.log("Database initialized");
-    app.listen(port, () => {
-      console.log(`Server is running on port ${port}`);
-    });
   })
   .catch((err) => {
     console.error("Error initializing database:", err);
   });
 
+  
 app.get("/products", (req, res) => {
   res.render("product/products.ejs", { products: sampleProducts.data });
 });

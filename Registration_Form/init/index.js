@@ -1,7 +1,7 @@
 //db.js
 
 const mongoose = require("mongoose");
-const User = require("../models/user.js");
+const Product = require("../models/product.js");
 const initData = require("./data.js");
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/shopcart";
@@ -12,9 +12,9 @@ async function initDB() {
     useUnifiedTopology: true,
   });
 
-  await User.deleteMany({});
+  await Product.deleteMany({});
   initData.data = initData.data.map((obj) => ({ ...obj }));
-  await User.insertMany(initData.user);
+  await Product.insertMany(initData.user);
 
   console.log("Data initialized successfully...");
 }
