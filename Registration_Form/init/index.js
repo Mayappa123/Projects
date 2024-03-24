@@ -1,7 +1,7 @@
 //db.js
 
 const mongoose = require("mongoose");
-const User = require("../models/user");
+const User = require("../models/user.js");
 const initData = require("./data.js");
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/shopcart";
@@ -20,4 +20,3 @@ async function initDB() {
 }
 
 module.exports = initDB;
-

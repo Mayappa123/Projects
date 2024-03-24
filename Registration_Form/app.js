@@ -8,7 +8,7 @@ const sampleProducts = require("./init/data");
 const Product = require("./models/product");
 const User = require("./models/user");
 const ejsMate = require("ejs-mate");
-const initDB = require("./init/db");
+const initDB = require("./init");
 const methodOverride = require("method-override");
 const path = require("path");
 const session = require("express-session");
@@ -98,7 +98,7 @@ app.get("/add", isLoggedin, (req, res) => {
 
 app.post("/signup", async (req, res) => {
   try {
-    const  {username, email, password}  = req.body;
+    const { username, email, password } = req.body;
     const newUser = new User({
       username,
       email,
