@@ -1,41 +1,32 @@
-function highlightSearchText() {
-  // Get the search query entered by the user
-  var searchText = document.getElementById("searcBox").value.trim();
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.getElementById("searchInput");
 
-  // Check if search query is not empty
-  if (searchText !== "") {
-    // Create a regular expression to search for the entered text, case insensitive
-    var regex = new RegExp(searchText, "gi");
+  searchInput.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+      performSearch();
+    }
+  });
 
-    // Get all elements where the search will be performed
-    var elementsToSearch = document.querySelectorAll("body *");
+  searchInput.addEventListener("input", () => {
+    performSearch();
+  });
 
-    // Loop through all elements
-    elementsToSearch.forEach(function (element) {
-      // Check if the element is a text node
-      if (element.nodeType === Node.TEXT_NODE) {
-        // Get the text content of the element
-        var textContent = element.textContent;
+  function performSearch() {
+    const query = searchInput.value.trim();
+    if (query.length === 0) {
+      // Clear the search results or hide them
+      return;
+    }
 
-        // Replace the search text with a highlighted version
-        var highlightedText = textContent.replace(regex, function (match) {
-          return "<span class='highlight'>" + match + "</span>";
-        });
-
-        // Update the element's HTML with the highlighted text
-        element.innerHTML = highlightedText;
-      }
-    });
-  } else {
-    // If search query is empty, remove any existing highlights
-    var highlightedElements = document.querySelectorAll(".highlight");
-    highlightedElements.forEach(function (element) {
-      element.outerHTML = element.innerHTML;
-    });
+    // Send AJAX request to server to fetch matching products
+    fetch(`/search?query=${query}`)
+      .then((response) => response.json())
+      .then((data) => {
+        // Update the UI to display the filtered products
+        console.log(data); // Handle the response data as needed
+      })
+      .catch((error) => {
+        console.error("Error fetching search results:", error);
+      });
   }
-}
-
-// Add event listener to the search input
-document
-  .getElementById("searcBox")
-  .addEventListener("input", highlightSearchText);
+});

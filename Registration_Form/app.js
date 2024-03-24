@@ -1,7 +1,7 @@
 //app.js
 
 const express = require("express");
-const port = 8090;
+const port = 8000;
 const app = express();
 const bodyParser = require("body-parser");
 const sampleProducts = require("./init/data");
@@ -70,7 +70,6 @@ initDB()
     console.error("Error initializing database:", err);
   });
 
-  
 app.get("/products", (req, res) => {
   res.render("product/products.ejs", { products: sampleProducts.data });
 });
@@ -90,7 +89,7 @@ app.get("/product/edit", (req, res) => {
   res.render("./product/edit.ejs", { product });
 });
 
-app.get("/add", isLoggedin, (req, res) => {
+app.get("/products/new", isLoggedin, (req, res) => {
   res.render("product/new.ejs");
 });
 
@@ -142,8 +141,7 @@ app.get("/product/:id", async (req, res) => {
 });
 
 //Create Product
-app.post("/add", isLoggedin, async (req, res) => {
-  console.log(req.body);
+app.post("/products", isLoggedin, async (req, res) => {
   const newProduct = new Product(req.body.product);
   await newProduct.save();
   //req.flash("success", "new product created...");
@@ -177,6 +175,22 @@ app.delete("/:id", isLoggedin, async (req, res) => {
   //req.flash("success", "Product deleted...");
   res.redirect("/listing");
 });
+
+// search Product
+app.get("/getproduct/:name", async (req, res) => {
+  try {
+    const findname = req.params.name;
+    const objs = await Product.find({
+      productName: { $regex: ".*" + findname + ".*" },
+    });
+    res.json(objs);
+  } 
+  catch (error) {
+    res.json({ message: error });
+  }
+});
+
+
 
 app.get("/logout", (req, res, next) => {
   req.logout((err) => {
