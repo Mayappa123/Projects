@@ -1,50 +1,75 @@
+// app.js 
 
-
-
-// app.js o
 const express = require('express');
 
 const session = require('express-session');
+const path = require("path");
+const bodyParser = require("body-parser");
+const sampleBlogs = require("./init/blogData");
+const ejsMate = require("ejs-mate");
+const initDB = require("./init");
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const mongoose = require('mongoose');
-const User = require('./models/User');
-const authRoutes = require('./routes/auth'); // Import
+const User = require('./models/user');
+const { data } = require("./init/blogData");
 
 const app = express();
 const port = 8040;
 
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+app.use(express.static(path.join(__dirname, "public")));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(__dirname));
+app.engine("ejs", ejsMate);
+
 // Passport middleware
-app.use(session({ secret: 'secret', resave: false, saveUninitialized: false }));
+const sessionOptions = {
+  secret: "mayappa",
+  resave: false,
+  saveUninitialized: true,
+};
+app.use(session(sessionOptions));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use("/", authRoutes);
+passport.use(new LocalStrategy(User.authenticate()));
 
-// Passport local strategy
-passport.use(new LocalStrategy({ usernameField: 'username' }, (username, password, done) => {
-  User.findOne({ username: username }, (err, user) => {
-    if (err) { return done(err); }
-    if (!user) { return done(null, false); }
-    if (user.password !== password) { return done(null, false); }
-    return done(null, user);
-  });
-}));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
-passport.serializeUser((user, done) => {
-  done(null, user.id);
+data.forEach((product) => {
+  //console.log(`Product Name: ${product.productname}, UUID: ${product.id}`);
 });
 
-passport.deserializeUser((id, done) => {
-  User.findById(id, (err, user) => {
-    done(err, user);
+initDB()
+  .then(() => {
+    console.log("Database initialized");
+  })
+  .catch((err) => {
+    console.error("Error initializing database:", err);
   });
+
+app.get("/blogs", (req, res) => {
+  res.render("blogs/blogs.ejs", { blogData: sampleBlogs.data });
 });
 
-// Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/blog', { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.log(err));
+app.get("/login", (req, res) => {
+  res.render("users/login.ejs");
+});
+
+app.get("/signup", (req, res) => {
+  res.render("users/signup.ejs");
+});
+
+app.get("/product/edit", (req, res) => {
+  res.render("./product/edit.ejs", { product });
+});
+
+app.get("/products/new", (req, res) => {
+  res.render("product/new.ejs");
+});
 
 app.listen(port, () => {
-  console.log("app is running...");
-});
+  console.log("app is running")
+})
+

@@ -1,0 +1,80 @@
+/* blogs.css */
+
+/* Container for blog posts */
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Individual blog post container */
+.blog-container {
+  width: calc(33.33% - 20px); /* Adjust width for responsiveness */
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease; /* Add transition for smoother effect */
+}
+
+/* Apply shadow effect and change cursor on hover */
+.blog-container:hover {
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+/* Blog post header */
+.blog-header {
+  padding: 20px;
+}
+
+/* Blog post title */
+.blog-title {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+/* Blog post metadata */
+.blog-meta {
+  font-style: italic;
+  color: #666;
+}
+
+/* Blog post content */
+.blog-content {
+  padding: 20px;
+}
+
+/* Profile images */
+.profile-image {
+  width: 100%;
+  margin-bottom: 10px;
+  
+}
+.blogProfile {
+  display: flex;
+  align-items: center;
+  justify-content: space-around; /* Align items vertically */
+}
+
+.blogProfile img {
+  height: 70px;
+  width: 70px; /* Adjust margin between image and subject */
+}
+
+.blogProfile b {
+}
+
+/* Responsive layout adjustments */
+@media (max-width: 991px) {
+  .blog-container {
+    width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 767px) {
+  .blog-container {
+    width: calc(100% - 20px);
+  }
+}
