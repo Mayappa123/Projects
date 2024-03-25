@@ -3,12 +3,12 @@
   <link rel="stylesheet" href="../../public/css/blogs.css">
 </head>
 <body>
-  <div class="products">
+  <div class="blogPost">
     <% blogData.forEach(blog => { %>
     <div class="blog-container">
       <div class="blogProfile">
         <img src="../../public/images/<%= blog.profileImage %>" alt="ProfileImage" class="img-fluid rounded-circle blogProfile">
-        <h3 class=""><%= blog.subject %></h3>
+        <h4 class=""><%= blog.subject %></h4>
       </div>
       <div class="blog-header">
         <h5 class="blog-title"><%= blog.title %></h5>

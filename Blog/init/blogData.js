@@ -38,7 +38,7 @@ const sampleBlogs = [
   {
     profileImage: "author1.jpg",
     date: "05-06-2023",
-    subject: "Node JS",
+    subject: "PHP",
     title: "31 remarkable NPM packages to steramline your development",
     authorName: "Tony Stark",
     content:
@@ -47,7 +47,7 @@ const sampleBlogs = [
   {
     profileImage: "author1.jpg",
     date: "05-06-2023",
-    subject: "Node JS",
+    subject: "Django",
     title: "31 remarkable NPM packages to steramline your development",
     authorName: "Tony Stark",
     content:
@@ -56,7 +56,7 @@ const sampleBlogs = [
   {
     profileImage: "author1.jpg",
     date: "05-06-2023",
-    subject: "Node JS",
+    subject: "C++",
     title: "31 remarkable NPM packages to steramline your development",
     authorName: "Tony Stark",
     content:
@@ -65,7 +65,7 @@ const sampleBlogs = [
   {
     profileImage: "author1.jpg",
     date: "05-06-2023",
-    subject: "Node JS",
+    subject: "React Native",
     title: "31 remarkable NPM packages to steramline your development",
     authorName: "Tony Stark",
     content:
@@ -74,7 +74,7 @@ const sampleBlogs = [
   {
     profileImage: "author1.jpg",
     date: "05-06-2023",
-    subject: "Node JS",
+    subject: "Technology",
     title: "31 remarkable NPM packages to steramline your development",
     authorName: "Tony Stark",
     content:
@@ -83,7 +83,7 @@ const sampleBlogs = [
   {
     profileImage: "author1.jpg",
     date: "05-06-2023",
-    subject: "Node JS",
+    subject: "Science",
     title: "31 remarkable NPM packages to steramline your development",
     authorName: "Tony Stark",
     content:
@@ -92,7 +92,7 @@ const sampleBlogs = [
   {
     profileImage: "author1.jpg",
     date: "05-06-2023",
-    subject: "Node JS",
+    subject: "Arts",
     title: "31 remarkable NPM packages to steramline your development",
     authorName: "Tony Stark",
     content:
@@ -101,7 +101,7 @@ const sampleBlogs = [
   {
     profileImage: "author1.jpg",
     date: "05-06-2023",
-    subject: "Node JS",
+    subject: "AIML",
     title: "31 remarkable NPM packages to steramline your development",
     authorName: "Tony Stark",
     content:
@@ -110,7 +110,7 @@ const sampleBlogs = [
   {
     profileImage: "author1.jpg",
     date: "05-06-2023",
-    subject: "Node JS",
+    subject: "Data",
     title: "31 remarkable NPM packages to steramline your development",
     authorName: "Tony Stark",
     content:
@@ -119,7 +119,7 @@ const sampleBlogs = [
   {
     profileImage: "author1.jpg",
     date: "05-06-2023",
-    subject: "Node JS",
+    subject: "Cricket",
     title: "31 remarkable NPM packages to steramline your development",
     authorName: "Tony Stark",
     content:
@@ -128,7 +128,7 @@ const sampleBlogs = [
   {
     profileImage: "author1.jpg",
     date: "05-06-2023",
-    subject: "Node JS",
+    subject: "Olympic",
     title: "31 remarkable NPM packages to steramline your development",
     authorName: "Tony Stark",
     content:
@@ -137,7 +137,7 @@ const sampleBlogs = [
   {
     profileImage: "author1.jpg",
     date: "05-06-2023",
-    subject: "Node JS",
+    subject: "IPL",
     title: "31 remarkable NPM packages to steramline your development",
     authorName: "Tony Stark",
     content:
@@ -146,7 +146,7 @@ const sampleBlogs = [
   {
     profileImage: "author1.jpg",
     date: "05-06-2023",
-    subject: "Node JS",
+    subject: "Electronics",
     title: "31 remarkable NPM packages to steramline your development",
     authorName: "Tony Stark",
     content:
@@ -155,7 +155,7 @@ const sampleBlogs = [
   {
     profileImage: "author1.jpg",
     date: "05-06-2023",
-    subject: "Node JS",
+    subject: "Jobs",
     title: "31 remarkable NPM packages to steramline your development",
     authorName: "Tony Stark",
     content:
@@ -164,7 +164,7 @@ const sampleBlogs = [
   {
     profileImage: "author1.jpg",
     date: "05-06-2023",
-    subject: "Node JS",
+    subject: "Engineering",
     title: "31 remarkable NPM packages to steramline your development",
     authorName: "Tony Stark",
     content:
@@ -173,7 +173,7 @@ const sampleBlogs = [
   {
     profileImage: "author1.jpg",
     date: "05-06-2023",
-    subject: "Node JS",
+    subject: "UPSC",
     title: "31 remarkable NPM packages to steramline your development",
     authorName: "Tony Stark",
     content:
@@ -182,7 +182,7 @@ const sampleBlogs = [
   {
     profileImage: "author1.jpg",
     date: "05-06-2023",
-    subject: "Node JS",
+    subject: "Animal",
     title: "31 remarkable NPM packages to steramline your development",
     authorName: "Tony Stark",
     content:
