@@ -11,7 +11,8 @@ const initDB = require("./init");
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('./models/user');
-const { data } = require("./init/blogData");
+const flash = require("connect-flash");
+// const { data } = require("./init/blogData");
 
 const app = express();
 const port = 8040;
@@ -22,6 +23,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
 app.engine("ejs", ejsMate);
+app.use(flash());
 
 // Passport middleware
 const sessionOptions = {
@@ -37,17 +39,17 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-data.forEach((product) => {
-  //console.log(`Product Name: ${product.productname}, UUID: ${product.id}`);
+app.use((req, res, next) => {
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  res.locals.currUser = req.user;
+  next();
 });
 
+
+
 initDB()
-  .then(() => {
-    console.log("Database initialized");
-  })
-  .catch((err) => {
-    console.error("Error initializing database:", err);
-  });
+
 
 app.get("/blogs", (req, res) => {
   res.render("blogs/blogs.ejs", { blogData: sampleBlogs.data });
