@@ -19,6 +19,7 @@
 .blog-container:hover {
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
   cursor: pointer;
+  border: 1px solid black;
 }
 
 .blog-header {
