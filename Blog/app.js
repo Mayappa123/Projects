@@ -1,17 +1,18 @@
-// app.js 
+// app.js
 
-const express = require('express');
+const express = require("express");
 
-const session = require('express-session');
+const session = require("express-session");
 const path = require("path");
 const bodyParser = require("body-parser");
 const sampleBlogs = require("./init/blogData");
 const ejsMate = require("ejs-mate");
 const initDB = require("./init");
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const User = require('./models/user');
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const User = require("./models/user");
 const flash = require("connect-flash");
+const Blog = require("./models/blog");
 // const { data } = require("./init/blogData");
 
 const app = express();
@@ -20,7 +21,7 @@ const port = 8040;
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
 app.engine("ejs", ejsMate);
 app.use(flash());
@@ -46,10 +47,7 @@ app.use((req, res, next) => {
   next();
 });
 
-
-
-initDB()
-
+initDB();
 
 app.get("/blogs", (req, res) => {
   res.render("blogs/blogs.ejs", { blogData: sampleBlogs.data });
@@ -63,15 +61,44 @@ app.get("/signup", (req, res) => {
   res.render("users/signup.ejs");
 });
 
-app.get("/product/edit", (req, res) => {
-  res.render("./product/edit.ejs", { product });
+app.get("/blogs/:id", async(req, res) => {
+  let {id} = req.params;
+  const blog = await Blog.findById(id);
+  res.render("blogs/show.ejs", {blog});
+})
+
+app.get("/blogs/:id/edit", async (req, res) => {
+  const { _id } = req.params;
+  try {
+    const blog = await Blog.findById(_id);
+    res.render("blogs/edit.ejs", { blog });
+  } catch (err) {
+    console.error("Error fetching blog:", err);
+    res.send("Error fetching blog");
+  }
 });
 
-app.get("/products/new", (req, res) => {
-  res.render("product/new.ejs");
+app.put("/blogs/:id/edit", async (req, res) => {
+  const { id } = req.params;
+  const { subject, title, date, authorName, content } = req.body.blog;
+  try {
+    const updatedBlog = await Blog.findByIdAndUpdate(
+      -id,
+      { subject, title, date, authorName, content },
+      { new: true }
+    );
+    console.log(updatedBlog);
+    res.redirect(`/blogs/${id}`);
+  } catch (err) {
+    console.error("Error updating blog:", err);
+    res.send("Error updating blog");
+  }
+});
+
+app.get("/blogs/new", (req, res) => {
+  res.render("blogs/new.ejs");
 });
 
 app.listen(port, () => {
-  console.log("app is running")
-})
-
+  console.log("app is running");
+});

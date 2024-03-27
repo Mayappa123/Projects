@@ -1,0 +1,73 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+  <div class="row mt-3">
+    <div class="col-8 offset-2">
+      <br /><br />
+      <h3>Edit your Blog</h3>
+      <form
+        method="POST"
+        action="/blogs/<%= blog._id %>/edit?_method=PUT"
+        class="form needs-validation"
+        novalidate
+        enctype="multipart/form-data"
+      >
+        <div class="mb-1">
+          <label for="subject" class="form-label">Subject</label>
+          <textarea name="blog[subject]" class="form-control" required>
+<%= blog.subject %></textarea
+          >
+        </div>
+        <br />
+        <div class="mb-1">
+          <label for="title" class="form-label">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            name="blog[title]"
+            value="<%= blog.title %>"
+            required
+          />
+        </div>
+        <br />
+       
+
+        <div class="row">
+          <div class="mb-1 col-md-8">
+            <label for="date" class="form-label">Date</label>
+            <input
+              type="date"
+              name="blog[date]"
+              class="form-control"
+              value="<%= blog.date %>"
+              required
+            />
+          </div>
+          <br />
+        </div>
+        <div class="mb-1">
+          <label for="authorName" class="form-label">authorName</label>
+          <input
+            type="text"
+            name="blog[authorName]"
+            class="form-control"
+            value="<%= blog.authorName %>"
+            required
+          />
+        </div>
+        <br />
+        <div class="form-floating">
+          <textarea
+            class="form-control"
+            placeholder="Leave a comment here"
+            id="floatingTextarea2"
+            value="<%= blog.content %>"
+            style="height: 100px"
+          ></textarea>
+          <label for="floatingTextarea2">Content</label>
+        </div>
+
+        <button class="btn btn-dark mb-3 edit-btn">Save</button>
+      </form>
+    </div>
+  </div>
+</body>
