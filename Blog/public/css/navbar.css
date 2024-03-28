@@ -1,0 +1,39 @@
+/* navbar.css */
+
+/* Customize navbar background, text color, etc. */
+.navbar {
+  background-color: #343a40;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
+
+
+
+
+
+.navbar-brand,
+.navbar-nav .nav-link {
+  color: #fff;
+}
+
+/* Style for search input field */
+.search-form {
+  display: flex;
+}
+
+.search-input {
+  margin-right: 10px; /* Add some spacing between input field and search button */
+}
+
+/* Show search input on small screens */
+@media (max-width: 768px) {
+  .search-form {
+    display: block; /* Display search form as a block on small screens */
+  }
+
+  .search-input {
+    margin-right: 0; /* Reset margin for small screens */
+    margin-bottom: 10px; /* Add some spacing below input field on small screens */
+  }
+}

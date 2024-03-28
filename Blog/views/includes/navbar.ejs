@@ -1,11 +1,19 @@
-
 <!-- navbar.ejs -->
-
+<head>
+  <link rel="stylesheet" href="../../public/css/navbar.css">
+</head>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container">
+  <div class="container nav-container">
     <a class="navbar-brand" href="#">Blogify</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
@@ -23,8 +31,13 @@
           <a class="nav-link" href="/contact">Contact</a>
         </li>
       </ul>
-      <form class="d-flex col-4">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <form class="d-flex col-6">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+        />
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -41,5 +54,3 @@
     </div>
   </div>
 </nav>
-
-
