@@ -1,17 +1,19 @@
-<!-- views/signup.ejs -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
+<!-- users/signup.ejs -->
+
+<% layout("/layouts/boilerplate") %>
+<h3 class="mt-2 col-4 offset-4 text-center">SIGNUP</h3>
+
+<body style="padding-top: 70px;">
   <div class="container">
-    <h2>Sign Up</h2>
-    <form action="/signup" method="POST">
-       <div class="form-group">
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+        <form
+          action="/signup"
+          method="post"
+          class="needs-validation"
+          novalidate
+        >
+          <div class="form-group">
             <label for="username">Username</label>
             <input
               type="text"
@@ -42,8 +44,16 @@
               name="password"
               required
             />
-      <button type="submit" class="btn btn-primary">Sign Up</button>
-    </form>
+          </div>
+          <button type="submit" class="btn btn-success mt-3 col-4 offset-4">
+            Sign Up
+          </button>
+        </form>
+      </div>
+    </div>
   </div>
-</body>
-</html>
+</body><br><br>
+
+
+
+

@@ -53,6 +53,10 @@ app.get("/blogs", (req, res) => {
   res.render("blogs/blogs.ejs", { blogData: sampleBlogs.data });
 });
 
+app.get("/", (req, res) => {
+  res.render("includes/home.ejs");
+});
+
 app.get("/login", (req, res) => {
   res.render("users/login.ejs");
 });
