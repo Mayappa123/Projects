@@ -49,6 +49,48 @@ app.use((req, res, next) => {
 
 initDB();
 
+app.post("/signup", async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
+    const newUser = new User({
+      username,
+      email,
+      password,
+    });
+    const registeredUser = await User.register(newUser, password);
+    req.login(registeredUser, (err) => {
+      if (err) {
+        return next(err);
+      }
+      //req.flash("success", "Welcome to shopcart");
+      res.redirect("/blogs");
+    });
+  } catch (error) {
+    console.log("error : ", error);
+  }
+});
+
+app.post(
+  "/login",
+  passport.authenticate("local", {
+    failureRedirect: "/login",
+    failureFlash: true,
+  }),
+  async (req, res) => {
+    await res.redirect("/blogs");
+  }
+);
+
+app.get("/logout", (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    //req.flash("success", "you are logged out...");
+    res.redirect("/blogs");
+  });
+});
+
 app.get("/blogs", (req, res) => {
   res.render("blogs/blogs.ejs", { blogData: sampleBlogs.data });
 });
@@ -101,6 +143,14 @@ app.put("/blogs/:id/edit", async (req, res) => {
 
 app.get("/blogs/new", (req, res) => {
   res.render("blogs/new.ejs");
+});
+
+app.get("/contact", (req, res) => {
+  res.render("blogs/contact.ejs");
+});
+
+app.get("/about", (req, res) => {
+  res.render("blogs/about.ejs");
 });
 
 app.listen(port, () => {
