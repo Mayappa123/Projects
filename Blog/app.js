@@ -1,5 +1,4 @@
 // app.js
-
 const express = require("express");
 
 const session = require("express-session");
@@ -13,7 +12,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/user");
 const flash = require("connect-flash");
 const Blog = require("./models/blog");
-const { isLoggedin } = require("middleware.js");
+// const { isLoggedin } = require("middleware.js");
 
 const app = express();
 const port = 8040;
@@ -107,13 +106,13 @@ app.get("/signup", (req, res) => {
   res.render("users/signup.ejs");
 });
 
-app.get("/blogs/:id", isLoggedin, async(req, res) => {
+app.get("/blogs/:id", async(req, res) => {
   let {id} = req.params;
   const blog = await Blog.findById(id);
   res.render("blogs/show.ejs", {blog});
 })
 
-app.get("/blogs/:id/edit", isLoggedin, async (req, res) => {
+app.get("/blogs/:id/edit",  async (req, res) => {
   const { _id } = req.params;
   try {
     const blog = await Blog.findById(_id);
@@ -124,7 +123,7 @@ app.get("/blogs/:id/edit", isLoggedin, async (req, res) => {
   }
 });
 
-app.put("/blogs/:id/edit", isLoggedin, async (req, res) => {
+app.put("/blogs/:id/edit",  async (req, res) => {
   const { id } = req.params;
   const { subject, title, date, authorName, content } = req.body.blog;
   try {
@@ -141,15 +140,15 @@ app.put("/blogs/:id/edit", isLoggedin, async (req, res) => {
   }
 });
 
-app.get("/blogs/new", isLoggedin, (req, res) => {
+app.get("/blogs/new",  (req, res) => {
   res.render("blogs/new.ejs");
 });
 
-app.get("/contact", isLoggedin, (req, res) => {
+app.get("/contact",  (req, res) => {
   res.render("blogs/contact.ejs");
 });
 
-app.get("/about", isLoggedin, (req, res) => {
+app.get("/about",  (req, res) => {
   res.render("blogs/about.ejs");
 });
 
