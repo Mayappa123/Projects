@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
 app.engine("ejs", ejsMate);
 app.use(flash());
-app.use(methodOverride("_method"))
+app.use(methodOverride("_method"));
 
 // Passport middleware
 const sessionOptions = {
@@ -129,36 +129,46 @@ app.get("/blogs/:id", async (req, res) => {
 //   }
 // });
 
+//Create route
+app.post("/blogs", async (req, res) => {
+  const newBlog = new Blog(req.body.blog);
+  await newBlog.save();
+  res.redirect("/blogs");
+
+});
+
 //edit route
 app.get("/blogs/:id/edit", async (req, res) => {
   const { id } = req.params;
-  try {
-    const blog = await Blog.findById(id);
-    res.render("blogs/edit.ejs", { blog });
-  } catch (err) {
-    console.error("Error fetching blog:", err);
-    res.send("Error fetching blog");
-  }
+  const blog = await Blog.findById(id);
+  res.render("blogs/edit.ejs", { blog });
 });
-
 
 //Update route
 app.put("/blogs/:id", async (req, res) => {
   const { id } = req.params;
-  const { subject, title, content } = req.body.blog;
-  try {
-    const updatedBlog = await Blog.findByIdAndUpdate(
-      id,
-      { subject, title, content },
-      { new: true }
-    );
-    console.log(updatedBlog);
-    res.redirect(`/blogs/${id}`);
-  } catch (err) {
-    console.error("Error updating blog:", err);
-    res.send("Error updating blog");
-  }
+  const updatedBlog = await Blog.findByIdAndUpdate(id, {...req.body.blog});
+  await updatedBlog.save();
+  console.log(updatedBlog);
+  res.redirect("/blogs");
 });
+
+
+// app.put("/blogs/:id", async (req, res) => {
+//   const { id } = req.params;
+//   try {
+//     const updatedBlog = await Blog.findByIdAndUpdate(id, {...req.body.blog});
+//     if (!updatedBlog) {
+//       return res.status(404).send("Blog not found");
+//     }
+//     await updatedBlog.save();
+//     console.log("Blog updated successfully:", updatedBlog);
+//     res.redirect("/blogs");
+//   } catch (error) {
+//     console.error("Error updating blog:", error);
+//   }
+// });
+
 
 app.get("/blogs/new", (req, res) => {
   res.render("blogs/new.ejs");

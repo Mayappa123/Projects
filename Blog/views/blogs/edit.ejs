@@ -16,7 +16,7 @@
       >
         <div class="mb-1">
           <label for="subject" class="form-label"><b>Subject</b></label>
-          <textarea name="blog[subject]" class="form-control" required value=""><%= blog.subject %>
+          <textarea name="blog[subject]" class="form-control" required ><%= blog.subject %>
            </textarea
           >
         </div>
@@ -61,17 +61,19 @@
           <label class="form-label" for="content"><b>Content</b></label><br>
           <textarea
             class="form-control"
+            name="blog[content]"
+
             id="content"
-            value=""
             style="height: 100px"
           ><%= blog.content %>
           </textarea>
         </div>
 
         <div class="text-center">
-          <button class="btn btn-success mb-3 mt-3 edit-btn mx-auto editnSave">
+            <button type="submit" class="btn btn-success mb-3 mt-3 edit-btn mx-auto editnSave">
             Edit & Save
           </button>
+          
         </div>
       </form>
     </div>
