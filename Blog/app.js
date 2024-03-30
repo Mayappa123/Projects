@@ -90,8 +90,13 @@ app.get("/logout", (req, res, next) => {
   });
 });
 
-app.get("/blogs", (req, res) => {
-  res.render("blogs/blogs.ejs", { blogData: sampleBlogs.data });
+// app.get("/blogs", (req, res) => {
+//   res.render("blogs/blogs.ejs", { blogData: sampleBlogs.data });
+// });
+
+app.get("/blogs", async (req, res) => {
+  const blogs = await Blog.find({});
+  res.render("blogs/blogs", { blogData: blogs });
 });
 
 app.get("/", (req, res) => {
@@ -106,11 +111,22 @@ app.get("/signup", (req, res) => {
   res.render("users/signup.ejs");
 });
 
-app.get("/blogs/:id", async(req, res) => {
-  let {id} = req.params;
-  const blog = await Blog.findById(id);
-  res.render("blogs/show.ejs", {blog});
-})
+app
+  .get("/blogs/:id", async (req, res) => {
+    let { id } = req.params;
+    const blog = await Blog.findById(id);
+    res.render("blogs/show.ejs", { blog });
+  })
+
+  app.delete("/blogs/:id", async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      await Blog.findByIdAndDelete(id);
+      res.redirect("/blogs");
+    } catch (err) {
+      next(err);
+    }
+  });
 
 app.get("/blogs/:id/edit",  async (req, res) => {
   const { _id } = req.params;
