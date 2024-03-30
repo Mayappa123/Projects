@@ -1,25 +1,28 @@
 <% layout("/layouts/boilerplate") %>
+<head>
+  <link rel="stylesheet" href="../../public/css/edit.ejs" />
+</head>
 <body>
-  <div class="row mt-3">
+  <div class="row">
     <div class="col-8 offset-2">
       <br /><br />
-      <h3>Edit your Blog</h3>
+      <h3 class="text-center">Edit your Blog</h3>
       <form
         method="POST"
-        action="/blogs/<%= blog._id %>/edit?_method=PUT"
+        action="/blogs/<%= blog._id %>?_method=PUT"
         class="form needs-validation"
         novalidate
         enctype="multipart/form-data"
       >
         <div class="mb-1">
-          <label for="subject" class="form-label">Subject</label>
-          <textarea name="blog[subject]" class="form-control" required>
-<%= blog.subject %></textarea
+          <label for="subject" class="form-label"><b>Subject</b></label>
+          <textarea name="blog[subject]" class="form-control" required value=""><%= blog.subject %>
+           </textarea
           >
         </div>
         <br />
         <div class="mb-1">
-          <label for="title" class="form-label">Title</label>
+          <label for="title" class="form-label"><b>Title</b></label>
           <input
             type="text"
             class="form-control"
@@ -29,44 +32,47 @@
           />
         </div>
         <br />
-       
-
-        <div class="row">
-          <div class="mb-1 col-md-8">
-            <label for="date" class="form-label">Date</label>
+        <div class="row d-flex">
+          <div class="mb-1 col-6">
+            <label for="date" class="form-label"><b>Date</b></label>
             <input
               type="date"
               name="blog[date]"
               class="form-control"
-              value="<%= blog.date %>"
-              required
+              value="<%= new Date(Date.now()).toISOString().split('T')[0] %>"
+              required disabled
             />
           </div>
-          <br />
-        </div>
-        <div class="mb-1">
-          <label for="authorName" class="form-label">authorName</label>
-          <input
-            type="text"
-            name="blog[authorName]"
-            class="form-control"
-            value="<%= blog.authorName %>"
-            required
-          />
+          <div class="col-6">
+            <label for="authorName" class="form-label">
+              <b>Author Name</b>
+            </label>
+            <input
+              type="text"
+              name="blog[authorName]"
+              class="form-control"
+              value="<%= blog.authorName %>"
+              disabled
+            />
+          </div>
         </div>
         <br />
-        <div class="form-floating">
+        <div class="mb-1">
+          <label class="form-label" for="content"><b>Content</b></label><br>
           <textarea
             class="form-control"
-            placeholder="Leave a comment here"
-            id="floatingTextarea2"
-            value="<%= blog.content %>"
+            id="content"
+            value=""
             style="height: 100px"
-          ></textarea>
-          <label for="floatingTextarea2">Content</label>
+          ><%= blog.content %>
+          </textarea>
         </div>
 
-        <button class="btn btn-dark mb-3 edit-btn">Save</button>
+        <div class="text-center">
+          <button class="btn btn-success mb-3 mt-3 edit-btn mx-auto editnSave">
+            Edit & Save
+          </button>
+        </div>
       </form>
     </div>
   </div>

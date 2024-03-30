@@ -26,12 +26,18 @@
         <div class="blog-content">
           <p><%= blog.content %></p>
         </div>
+        <% if(currUser) { %>
         <div class="buttons mt-3" role="group">
-          <!-- Edit button -->
-          <button type="button" class="btn btn-primary editBtn">Edit</button>
-          <!-- Delete button -->
-          <button type="button" class="btn btn-danger deleteBtn">Delete</button>
+          <a href="/blogs/<%= blog._id %>/edit">
+            <button type="button" class="btn btn-primary editBtn">Edit</button>
+          </a>
+          <a href="">
+            <button type="button" class="btn btn-danger deleteBtn">
+              Delete
+            </button>
+          </a>
         </div>
+        <% } %>
       </div>
     </div>
   </div>

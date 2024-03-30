@@ -111,27 +111,27 @@ app.get("/signup", (req, res) => {
   res.render("users/signup.ejs");
 });
 
-app
-  .get("/blogs/:id", async (req, res) => {
-    let { id } = req.params;
-    const blog = await Blog.findById(id);
-    res.render("blogs/show.ejs", { blog });
-  })
+app.get("/blogs/:id", async (req, res) => {
+  let { id } = req.params;
+  const blog = await Blog.findById(id);
+  res.render("blogs/show.ejs", { blog });
+});
 
-  app.delete("/blogs/:id", async (req, res, next) => {
-    try {
-      const { id } = req.params;
-      await Blog.findByIdAndDelete(id);
-      res.redirect("/blogs");
-    } catch (err) {
-      next(err);
-    }
-  });
+// app.delete("/blogs/:id", async (req, res, next) => {
+//   try {
+//     const { id } = req.params;
+//     await Blog.findByIdAndDelete(id);
+//     res.redirect("/blogs");
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
-app.get("/blogs/:id/edit",  async (req, res) => {
-  const { _id } = req.params;
+//edit route
+app.get("/blogs/:id/edit", async (req, res) => {
+  const { id } = req.params;
   try {
-    const blog = await Blog.findById(_id);
+    const blog = await Blog.findById(id);
     res.render("blogs/edit.ejs", { blog });
   } catch (err) {
     console.error("Error fetching blog:", err);
@@ -139,13 +139,13 @@ app.get("/blogs/:id/edit",  async (req, res) => {
   }
 });
 
-app.put("/blogs/:id/edit",  async (req, res) => {
+app.put("/blogs/:id", async (req, res) => {
   const { id } = req.params;
-  const { subject, title, date, authorName, content } = req.body.blog;
+  const { subject, title, content } = req.body.blog;
   try {
     const updatedBlog = await Blog.findByIdAndUpdate(
-      -id,
-      { subject, title, date, authorName, content },
+      id,
+      { subject, title, content },
       { new: true }
     );
     console.log(updatedBlog);
@@ -156,15 +156,15 @@ app.put("/blogs/:id/edit",  async (req, res) => {
   }
 });
 
-app.get("/blogs/new",  (req, res) => {
+app.get("/blogs/new", (req, res) => {
   res.render("blogs/new.ejs");
 });
 
-app.get("/contact",  (req, res) => {
+app.get("/contact", (req, res) => {
   res.render("blogs/contact.ejs");
 });
 
-app.get("/about",  (req, res) => {
+app.get("/about", (req, res) => {
   res.render("blogs/about.ejs");
 });
 
