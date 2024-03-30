@@ -1,0 +1,32 @@
+<% layout("/layouts/boilerplate") %>
+
+<head>
+  <title><%= blog.title %></title>
+  <link rel="stylesheet" href="../../public/css/show.css" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="blogPost">
+      <div class="blog-container">
+        <div class="blogProfile">
+          <img
+            src="../../public/images/<%= blog.profileImage %>"
+            alt="ProfileImage"
+            class="img-fluid rounded-circle blogProfile"
+          />
+          <h4 class=""><%= blog.subject %></h4>
+        </div>
+        <div class="blog-header">
+          <h5 class="blog-title"><%= blog.title %></h5>
+          <p class="blog-meta">
+            Posted on <%= blog.date %> by <%= blog.authorName %>
+          </p>
+        </div>
+        <div class="blog-content">
+          <p><%= blog.content %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
