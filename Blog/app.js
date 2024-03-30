@@ -12,6 +12,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/user");
 const flash = require("connect-flash");
 const Blog = require("./models/blog");
+const methodOverride = require("method-override");
 // const { isLoggedin } = require("middleware.js");
 
 const app = express();
@@ -24,6 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
 app.engine("ejs", ejsMate);
 app.use(flash());
+app.use(methodOverride("_method"))
 
 // Passport middleware
 const sessionOptions = {
@@ -139,6 +141,8 @@ app.get("/blogs/:id/edit", async (req, res) => {
   }
 });
 
+
+//Update route
 app.put("/blogs/:id", async (req, res) => {
   const { id } = req.params;
   const { subject, title, content } = req.body.blog;
