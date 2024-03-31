@@ -3,11 +3,12 @@
 .blogPost {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  align-items: center;
 }
 
 .blog-container {
-  width: calc(33.33% - 20px); 
+  /* width: calc(33.33% - 20px); */
+  width: 100%; 
   margin-bottom: 20px;
   background-color: #f9f9f9;
   border-radius: 8px;
@@ -46,6 +47,7 @@
   margin-bottom: 10px;
 }
 .blogProfile {
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: space-around; 

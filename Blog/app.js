@@ -147,7 +147,7 @@ app.get("/blogs/:id/edit", async (req, res) => {
 //Update route
 app.put("/blogs/:id", async (req, res) => {
   const { id } = req.params;
-  const updatedBlog = await Blog.findByIdAndUpdate(id, {...req.body.blog});
+  const updatedBlog = await Blog.findByIdAndUpdate(id, { ...req.body.blog });
   await updatedBlog.save();
   console.log(updatedBlog);
   res.redirect("/blogs");
