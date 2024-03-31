@@ -8,13 +8,17 @@
 
 .blog-container {
   /* width: calc(33.33% - 20px); */
-  width: 100%; 
+  width: 100%;
   margin-bottom: 20px;
   background-color: #f9f9f9;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease; 
+  transition: box-shadow 0.3s ease;
+}
+
+.singleBlog {
+  text-decoration: none;
 }
 
 .blog-container:hover {
@@ -42,22 +46,20 @@
   padding: 10px 20px;
 }
 
-.profile-image {
-  width: 100%;
-  margin-bottom: 10px;
-}
 .blogProfile {
-  height: 70px;
+  width: 180px;
+  padding: 5px 0 0 10px;
+  height: 80px;
   display: flex;
   align-items: center;
-  justify-content: space-around; 
+  justify-content: space-around;
 }
 
 .blogProfile img {
-  height: 70px;
-  width: 70px; 
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
 }
-
 
 @media (max-width: 991px) {
   .blog-container {

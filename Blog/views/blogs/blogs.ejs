@@ -8,27 +8,35 @@
   <div class="blogPost">
     <% blogData.forEach(blog => { %>
     <div class="blog-container">
-      <a href="/blogs/<%= blog._id %>">
+      <a href="/blogs/<%= blog._id %>" class="singleBlog">
         <div class="blogProfile">
           <img
             src="../../public/images/<%= blog.profileImage %>"
             alt="ProfileImage"
-            class="img-fluid rounded-circle blogProfile"
+            class="ProfileImage"
           />
-          <h4 class=""><%= blog.authorName %></h4>
+          <h5 class="authorName"><%= blog.authorName %></h5>
         </div>
+        
         <div class="blog-header">
-          <h5 class="blog-title"><%= blog.title %></h5>
+          <h6 class="blog-title"><%= blog.title %></h6>
           <p class="blog-meta">
             Posted on <%= blog.date %>
-             <!-- by <%= blog.authorName %> -->
           </p>
         </div>
-        <!-- <div class="blog-content">
-          <p><%= blog.content %></p>
-        </div> -->
       </a>
     </div>
     <% }) %>
   </div>
+
+  <!-- <nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+  </ul>
+</nav> -->
+
 </body>
