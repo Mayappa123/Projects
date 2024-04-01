@@ -183,7 +183,6 @@ app.get("/about", (req, res) => {
 });
 
 
-
 app.get("/user/active", (req, res) => {
   res.render("users/activeUser.ejs", { currUser:req.user });
 });
