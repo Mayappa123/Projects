@@ -182,6 +182,33 @@ app.get("/about", (req, res) => {
   res.render("blogs/about.ejs");
 });
 
+
+
+app.get("/user/active", (req, res) => {
+  res.render("users/activeUser.ejs", { currUser:req.user });
+});
+
+app.post("/updateProfile", async (req, res) => {
+  const { username, email, contact } = req.body;
+  try {
+    const user = await User.findById(req.user.id);
+    user.username = username;
+    user.email = email;
+    user.contact = contact;
+
+    if (req.file) {
+      user.profileImage = req.file.filename;
+    }
+    await user.save();
+    res.redirect("/user/active");
+  } 
+  catch (error) {
+    console.error("Error updating profile:", error);
+    res.status(500).send("Error updating profile");
+  }
+});
+
+
 app.listen(port, () => {
   console.log("app is running");
 });

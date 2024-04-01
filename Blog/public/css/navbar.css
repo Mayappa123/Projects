@@ -8,10 +8,6 @@
   width: 100vw;
 }
 
-
-
-
-
 .navbar-brand,
 .navbar-nav .nav-link {
   color: #fff;
@@ -24,6 +20,10 @@
 
 .search-input {
   margin-right: 10px; /* Add some spacing between input field and search button */
+}
+
+li a {
+  text-decoration: none;
 }
 
 /* Show search input on small screens */

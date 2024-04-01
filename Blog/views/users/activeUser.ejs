@@ -1,0 +1,50 @@
+<!-- //users/activeUser.js -->
+
+<% layout("/layouts/boilerplate") %>
+
+<head>
+  <title>Active User Profile</title>
+   <style>
+    .container3 {
+      position: relative;
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #7ed957;
+      border-radius: 15px;
+    }
+
+    .pen {
+      font-size: 30px;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: white;
+    }
+
+    .useractive {
+      font-size: 80px;
+      background: none;
+      color: white;
+    }
+
+    .bioContent {
+      font-size: 20px;
+      color: white;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container3 mt-3">
+    <p class="editBio text-end">
+      <i class="fa-regular fa-pen-to-square pen"></i>
+    </p>
+    <p class="useractive text-center">
+      <i class="fa-solid fa-user"></i>
+    </p>
+    <h3 class="text-center bioContent"><%= currUser.username %></h3>
+    <h3 class="text-center bioContent"><%= currUser.email %></h3>
+  </div>
+</body>
