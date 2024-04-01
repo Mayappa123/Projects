@@ -182,7 +182,6 @@ app.get("/about", (req, res) => {
   res.render("blogs/about.ejs");
 });
 
-
 app.get("/user/active", (req, res) => {
   res.render("users/activeUser.ejs", { currUser:req.user });
 });
