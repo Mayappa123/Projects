@@ -13,7 +13,7 @@ const User = require("./models/user");
 const flash = require("connect-flash");
 const Blog = require("./models/blog");
 const methodOverride = require("method-override");
-const { isLoggedin } = require("./middleware.js");
+const { isLoggedin, isOwner } = require("./middleware.js");
 
 const app = express();
 const port = 8040;
@@ -95,14 +95,13 @@ app.get("/logout", isLoggedin, (req, res, next) => {
   });
 });
 
-
 app.get("/blogs", isLoggedin, async (req, res) => {
   const blogs = await Blog.find({});
   res.render("blogs/blogs", { blogData: blogs });
 });
 
 app.get("/", (req, res) => {
-  res.render("includes/home.ejs");
+  res.render("users/login.ejs");
 });
 
 app.get("/login", (req, res) => {
@@ -115,40 +114,31 @@ app.get("/signup", (req, res) => {
 
 app.get("/blogs/:id", isLoggedin, async (req, res) => {
   let { id } = req.params;
-  const blog = await Blog.findById(id);
+  const blog = await Blog.findById(id).populate("owner");
+  if (!blog) {
+    req.flash("error", "blog does'nt exist...");
+    res.redirect("/blogs");
+  }
+  console.log(blog);
   res.render("blogs/show.ejs", { blog });
 });
-
-// app.delete("/blogs/:id", async (req, res, next) => {
-//   try {
-//     const { id } = req.params;
-//     await Blog.findByIdAndDelete(id);
-//     res.redirect("/blogs");
-//   } catch (err) {
-//     next(err);
-//   }
-// });
 
 app.get("/blog/new", isLoggedin, (req, res) => {
   res.render("blogs/new.ejs");
 });
 
 //Create route
-app.post("/blogs/new", isLoggedin, async (req, res) => {
-  try {
-    const newBlog = new Blog(req.body.blog);
-    await newBlog.save();
-    console.log(newBlog);
-    req.flash("success", "New blog created...");
-    res.redirect("/blogs");
-  } catch (error) {
-    req.flash("error", "something went wrong. Try again later...");
-    console.log(`error is..... ${error}`);
-  }
+app.post("/newBlog", isLoggedin, async (req, res) => {
+  const newBlog = new Blog(req.body.blog);
+  newBlog.owner = req.user._id;
+  await newBlog.save();
+  console.log(newBlog);
+  req.flash("success", "New blog created...");
+  res.redirect("/blogs");
 });
 
 //edit route
-app.get("/blogs/:id/edit", isLoggedin, async (req, res) => {
+app.get("/blogs/:id/edit", isLoggedin, isOwner, async (req, res) => {
   const { id } = req.params;
   const blog = await Blog.findById(id);
 
@@ -156,9 +146,9 @@ app.get("/blogs/:id/edit", isLoggedin, async (req, res) => {
 });
 
 //Update route
-app.put("/blogs/:id", isLoggedin, async (req, res) => {
+app.put("/blogs/:id", isLoggedin, isOwner, async (req, res) => {
   const { id } = req.params;
-  const updatedBlog = await Blog.findByIdAndUpdate(id, { ...req.body.blog });
+  const updatedBlog = await Blog.findByIdAndUpdate(id, req.body.blog);
   await updatedBlog.save();
   console.log(updatedBlog);
   req.flash("success", "blog updated successfully...");
@@ -166,7 +156,7 @@ app.put("/blogs/:id", isLoggedin, async (req, res) => {
 });
 
 // Delete route
-app.get("/blogs/:id/delete", async (req, res) => {
+app.get("/blogs/:id/delete", isOwner, isOwner, async (req, res) => {
   try {
     const { id } = req.params;
     const deletedBlog = await Blog.findByIdAndDelete(id);
@@ -176,8 +166,7 @@ app.get("/blogs/:id/delete", async (req, res) => {
       req.flash("success", "Blog deleted successfully");
     }
     res.redirect("/blogs");
-  } 
-  catch (error) {
+  } catch (error) {
     req.flash("error", "Failed to delete blog");
     res.redirect("/blogs");
   }

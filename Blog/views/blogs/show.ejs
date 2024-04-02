@@ -15,6 +15,7 @@
             alt="ProfileImage"
             class="img-fluid rounded-circle blogProfile"
           />
+          <i><%= blog.owner.username %></i>
           <h4 class=""><%= blog.subject %></h4>
         </div>
         <div class="blog-header">
@@ -26,7 +27,7 @@
         <div class="blog-content">
           <p><%= blog.content %></p>
         </div>
-        <% if(currUser) { %>
+        <% if(currUser && currUser._id.equals(blog.owner._id)) { %>
         <div class="buttons mt-3" role="group">
           <a href="/blogs/<%= blog._id %>/edit">
             <button type="button" class="btn btn-primary editBtn">Edit</button>

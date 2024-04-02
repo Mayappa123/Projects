@@ -1,7 +1,7 @@
 // models/blog.js
 
 const mongoose = require("mongoose");
-
+const Schema = mongoose.Schema;
 const blogSchema = new mongoose.Schema({
   profileImage: {
     type: String,
@@ -27,6 +27,10 @@ const blogSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
+  }
 });
 
 const Blog = mongoose.model("Blog", blogSchema);
