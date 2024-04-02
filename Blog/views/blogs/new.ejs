@@ -1,0 +1,93 @@
+<!-- /blogs/new.ejs -->
+
+<% layout("/layouts/boilerplate") %>
+
+<head>
+  <title>New Blog</title>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css"
+  />
+  <style>
+    .form-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .postBtn {
+        width: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="form-container mt-3">
+    <h3 class="text-center mb-4">New Blog</h3>
+    <form action="/blogs/new" method="POST">
+      <div class="mb-3">
+        <label for="profileImage" class="form-label">Profile Image</label>
+        <input
+          type="file"
+          class="form-control"
+          id="profileImage"
+          name="blog[profileImage]"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="date" class="form-label">Date</label>
+        <input
+          type="date"
+          value="<%= new Date(Date.now()).toISOString().split('T')[0] %>"
+          class="form-control"
+          id="date"
+          name="blog[date]"
+          required disabled
+        />
+      </div>
+      <div class="mb-3">
+        <label for="subject" class="form-label">Subject</label>
+        <input
+          type="text"
+          class="form-control"
+          id="subject"
+          name="blog[subject]"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          name="blog[title]"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="authorName" class="form-label">Author Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="authorName"
+          name="blog[authorName]"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="content" class="form-label">Content</label>
+        <textarea
+          class="form-control"
+          id="content"
+          name="blog[content]"
+          rows="5"
+          required
+        ></textarea>
+      </div>
+      <div class="text-center">
+        <a type="submit" class="btn btn-primary postBtn" href="/blogs/new">Post</a>
+      </div>
+    </form>
+  </div>
+</body>

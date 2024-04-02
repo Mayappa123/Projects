@@ -13,7 +13,7 @@ const User = require("./models/user");
 const flash = require("connect-flash");
 const Blog = require("./models/blog");
 const methodOverride = require("method-override");
-// const { isLoggedin } = require("middleware.js");
+const { isLoggedin } = require("./middleware.js");
 
 const app = express();
 const port = 8040;
@@ -24,7 +24,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
 app.engine("ejs", ejsMate);
-app.use(flash());
 app.use(methodOverride("_method"));
 
 // Passport middleware
@@ -34,6 +33,7 @@ const sessionOptions = {
   saveUninitialized: true,
 };
 app.use(session(sessionOptions));
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
@@ -63,7 +63,7 @@ app.post("/signup", async (req, res) => {
       if (err) {
         return next(err);
       }
-      //req.flash("success", "Welcome to shopcart");
+      req.flash("success", "Welcome to Blogify");
       res.redirect("/blogs");
     });
   } catch (error) {
@@ -92,11 +92,8 @@ app.get("/logout", (req, res, next) => {
   });
 });
 
-// app.get("/blogs", (req, res) => {
-//   res.render("blogs/blogs.ejs", { blogData: sampleBlogs.data });
-// });
 
-app.get("/blogs", async (req, res) => {
+app.get("/blogs", isLoggedin, async (req, res) => {
   const blogs = await Blog.find({});
   res.render("blogs/blogs", { blogData: blogs });
 });
@@ -113,7 +110,7 @@ app.get("/signup", (req, res) => {
   res.render("users/signup.ejs");
 });
 
-app.get("/blogs/:id", async (req, res) => {
+app.get("/blogs/:id", isLoggedin, async (req, res) => {
   let { id } = req.params;
   const blog = await Blog.findById(id);
   res.render("blogs/show.ejs", { blog });
@@ -129,30 +126,37 @@ app.get("/blogs/:id", async (req, res) => {
 //   }
 // });
 
-//Create route
-app.post("/blogs", async (req, res) => {
-  const newBlog = new Blog(req.body.blog);
-  await newBlog.save();
-  res.redirect("/blogs");
+app.get("/blog/new", isLoggedin, (req, res) => {
+  res.render("blogs/new.ejs");
+});
 
+//Create route
+app.post("/blogs/new", isLoggedin, async (req, res) => {
+  try {
+    const newBlog = new Blog(req.body.blog);
+    await newBlog.save();
+    console.log(newBlog);
+    res.redirect("/blogs");
+  } catch (error) {
+    console.log(`error is..... ${error}`);
+  }
 });
 
 //edit route
-app.get("/blogs/:id/edit", async (req, res) => {
+app.get("/blogs/:id/edit", isLoggedin, async (req, res) => {
   const { id } = req.params;
   const blog = await Blog.findById(id);
   res.render("blogs/edit.ejs", { blog });
 });
 
 //Update route
-app.put("/blogs/:id", async (req, res) => {
+app.put("/blogs/:id", isLoggedin, async (req, res) => {
   const { id } = req.params;
   const updatedBlog = await Blog.findByIdAndUpdate(id, { ...req.body.blog });
   await updatedBlog.save();
   console.log(updatedBlog);
   res.redirect("/blogs");
 });
-
 
 // app.put("/blogs/:id", async (req, res) => {
 //   const { id } = req.params;
@@ -169,24 +173,19 @@ app.put("/blogs/:id", async (req, res) => {
 //   }
 // });
 
-
-app.get("/blogs/new", (req, res) => {
-  res.render("blogs/new.ejs");
-});
-
-app.get("/contact", (req, res) => {
+app.get("/contact", isLoggedin, (req, res) => {
   res.render("blogs/contact.ejs");
 });
 
-app.get("/about", (req, res) => {
+app.get("/about", isLoggedin, (req, res) => {
   res.render("blogs/about.ejs");
 });
 
-app.get("/user/active", (req, res) => {
-  res.render("users/activeUser.ejs", { currUser:req.user });
+app.get("/user/active", isLoggedin, (req, res) => {
+  res.render("users/activeUser.ejs", { currUser: req.user });
 });
 
-app.post("/updateProfile", async (req, res) => {
+app.post("/updateProfile", isLoggedin, async (req, res) => {
   const { username, email, contact } = req.body;
   try {
     const user = await User.findById(req.user.id);
@@ -199,13 +198,11 @@ app.post("/updateProfile", async (req, res) => {
     }
     await user.save();
     res.redirect("/user/active");
-  } 
-  catch (error) {
+  } catch (error) {
     console.error("Error updating profile:", error);
     res.status(500).send("Error updating profile");
   }
 });
-
 
 app.listen(port, () => {
   console.log("app is running");

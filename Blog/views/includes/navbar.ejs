@@ -49,6 +49,11 @@
           <a class="nav-link" href="/login">Login</a>
         </li>
         <% } %> <% if(currUser) { %>
+          <li class="nav-item">
+          <a class="nav-link " href="/blog/new"
+            >New Blog
+          </a>
+        </li>
         <li class="nav-item">
           <a class="nav-link activeUser" href="/user/active"
             ><%= currUser.username %>
