@@ -1,4 +1,5 @@
 <!-- boilerplate.ejs -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -28,9 +29,10 @@
   </head>
   <body>
     <%- include("../includes/navbar.ejs") %>
-    <br /><br /><br /><br>
-    <div class="container"><%- body %></div>
-
+    <br /><br /><br>
+    <div class="container">
+    <%- include("../includes/flash.ejs") %>
+    <%- body %></div>
     <%- include("../includes/footer.ejs") %>
 
     <script

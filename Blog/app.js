@@ -78,17 +78,18 @@ app.post(
     failureFlash: true,
   }),
   async (req, res) => {
+    req.flash("success", "welcome to Blogify...");
     await res.redirect("/blogs");
   }
 );
 
-app.get("/logout", (req, res, next) => {
+app.get("/logout", isLoggedin, (req, res, next) => {
   req.logout((err) => {
     if (err) {
       return next(err);
     }
-    //req.flash("success", "you are logged out...");
-    res.redirect("/blogs");
+    req.flash("success", "You are logged out now...");
+    res.redirect("/login");
   });
 });
 
