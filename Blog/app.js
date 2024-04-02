@@ -67,6 +67,7 @@ app.post("/signup", async (req, res) => {
       res.redirect("/blogs");
     });
   } catch (error) {
+    req.flash("errror", "something went wrong");
     console.log("error : ", error);
   }
 });
@@ -86,6 +87,7 @@ app.post(
 app.get("/logout", isLoggedin, (req, res, next) => {
   req.logout((err) => {
     if (err) {
+      req.flash("error");
       return next(err);
     }
     req.flash("success", "You are logged out now...");
@@ -137,8 +139,10 @@ app.post("/blogs/new", isLoggedin, async (req, res) => {
     const newBlog = new Blog(req.body.blog);
     await newBlog.save();
     console.log(newBlog);
+    req.flash("success", "New blog created...");
     res.redirect("/blogs");
   } catch (error) {
+    req.flash("error", "something went wrong. Try again later...");
     console.log(`error is..... ${error}`);
   }
 });
@@ -147,6 +151,7 @@ app.post("/blogs/new", isLoggedin, async (req, res) => {
 app.get("/blogs/:id/edit", isLoggedin, async (req, res) => {
   const { id } = req.params;
   const blog = await Blog.findById(id);
+
   res.render("blogs/edit.ejs", { blog });
 });
 
@@ -156,23 +161,27 @@ app.put("/blogs/:id", isLoggedin, async (req, res) => {
   const updatedBlog = await Blog.findByIdAndUpdate(id, { ...req.body.blog });
   await updatedBlog.save();
   console.log(updatedBlog);
+  req.flash("success", "blog updated successfully...");
   res.redirect("/blogs");
 });
 
-// app.put("/blogs/:id", async (req, res) => {
-//   const { id } = req.params;
-//   try {
-//     const updatedBlog = await Blog.findByIdAndUpdate(id, {...req.body.blog});
-//     if (!updatedBlog) {
-//       return res.status(404).send("Blog not found");
-//     }
-//     await updatedBlog.save();
-//     console.log("Blog updated successfully:", updatedBlog);
-//     res.redirect("/blogs");
-//   } catch (error) {
-//     console.error("Error updating blog:", error);
-//   }
-// });
+// Delete route
+app.get("/blogs/:id/delete", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedBlog = await Blog.findByIdAndDelete(id);
+    if (!deletedBlog) {
+      req.flash("error", "Blog not found");
+    } else {
+      req.flash("success", "Blog deleted successfully");
+    }
+    res.redirect("/blogs");
+  } 
+  catch (error) {
+    req.flash("error", "Failed to delete blog");
+    res.redirect("/blogs");
+  }
+});
 
 app.get("/contact", isLoggedin, (req, res) => {
   res.render("blogs/contact.ejs");
