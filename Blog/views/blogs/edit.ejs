@@ -9,16 +9,16 @@
       <h3 class="text-center">Edit your Blog</h3>
       <form
         method="POST"
-        action="/blogs/<%= blog._id %>?_method=PUT"
+        action="/blogs/<%=blog._id%>?_method=PUT"
         class="form needs-validation"
         novalidate
         enctype="multipart/form-data"
       >
         <div class="mb-1">
           <label for="subject" class="form-label"><b>Subject</b></label>
-          <textarea name="blog[subject]" class="form-control" required ><%= blog.subject %>
-           </textarea
-          >
+          <textarea name="blog[subject]" class="form-control" required>
+            <%= blog.subject %>
+           </textarea>
         </div>
         <br />
         <div class="mb-1">
@@ -40,7 +40,7 @@
               name="blog[date]"
               class="form-control"
               value="<%= new Date(Date.now()).toISOString().split('T')[0] %>"
-              required disabled
+              required
             />
           </div>
           <div class="col-6">
@@ -52,28 +52,30 @@
               name="blog[authorName]"
               class="form-control"
               value="<%= blog.authorName %>"
-              disabled
             />
           </div>
         </div>
         <br />
         <div class="mb-1">
-          <label class="form-label" for="content"><b>Content</b></label><br>
+          <label class="form-label" for="content"><b>Content</b></label>
+          <br />
           <textarea
             class="form-control"
             name="blog[content]"
-
             id="content"
             style="height: 100px"
-          ><%= blog.content %>
+          >
+            <%= blog.content %>
           </textarea>
         </div>
 
         <div class="text-center">
-            <button type="submit" class="btn btn-success mb-3 mt-3 edit-btn mx-auto editnSave">
+          <button
+            type="submit"
+            class="btn btn-success mb-3 mt-3 edit-btn mx-auto editnSave"
+          >
             Edit & Save
           </button>
-          
         </div>
       </form>
     </div>

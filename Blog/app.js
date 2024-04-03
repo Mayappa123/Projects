@@ -119,7 +119,6 @@ app.get("/blogs/:id", isLoggedin, async (req, res) => {
     req.flash("error", "blog does'nt exist...");
     res.redirect("/blogs");
   }
-  console.log(blog);
   res.render("blogs/show.ejs", { blog });
 });
 
@@ -141,14 +140,13 @@ app.post("/newBlog", isLoggedin, async (req, res) => {
 app.get("/blogs/:id/edit", isLoggedin, isOwner, async (req, res) => {
   const { id } = req.params;
   const blog = await Blog.findById(id);
-
   res.render("blogs/edit.ejs", { blog });
 });
 
 //Update route
 app.put("/blogs/:id", isLoggedin, isOwner, async (req, res) => {
   const { id } = req.params;
-  const updatedBlog = await Blog.findByIdAndUpdate(id, req.body.blog);
+  const updatedBlog = await Blog.findByIdAndUpdate(id, {...req.body.blog});
   await updatedBlog.save();
   console.log(updatedBlog);
   req.flash("success", "blog updated successfully...");
@@ -156,19 +154,14 @@ app.put("/blogs/:id", isLoggedin, isOwner, async (req, res) => {
 });
 
 // Delete route
-app.get("/blogs/:id/delete", isOwner, isOwner, async (req, res) => {
+app.delete("/blogs/:id", isLoggedin, isOwner, async (req, res) => {
   try {
     const { id } = req.params;
-    const deletedBlog = await Blog.findByIdAndDelete(id);
-    if (!deletedBlog) {
-      req.flash("error", "Blog not found");
-    } else {
-      req.flash("success", "Blog deleted successfully");
-    }
+    await Blog.findByIdAndDelete(id);
+    req.flash("success", "blog deleted successfully...");
     res.redirect("/blogs");
   } catch (error) {
-    req.flash("error", "Failed to delete blog");
-    res.redirect("/blogs");
+    console.log(error);
   }
 });
 

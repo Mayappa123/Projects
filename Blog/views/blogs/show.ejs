@@ -1,3 +1,5 @@
+<!-- /blogs/show.ejs -->
+
 <% layout("/layouts/boilerplate") %>
 
 <head>
@@ -27,16 +29,18 @@
         <div class="blog-content">
           <p><%= blog.content %></p>
         </div>
+
         <% if(currUser && currUser._id.equals(blog.owner._id)) { %>
         <div class="buttons mt-3" role="group">
           <a href="/blogs/<%= blog._id %>/edit">
             <button type="button" class="btn btn-primary editBtn">Edit</button>
           </a>
-          <a href="/blogs/<%= blog._id %>/delete">
-            <button type="button" class="btn btn-danger deleteBtn">
-              Delete
-            </button>
-          </a>
+          <!-- <a href="/blogs/<%=blog._id%>?_method=DELETE"> -->
+          <form action="/blogs/<%=blog._id%>?_method=DELETE" method="POST">
+            <button class="btn btn-danger deleteBtn">Delete</button>
+          </form>
+
+          <!-- </a> -->
         </div>
         <% } %>
       </div>
