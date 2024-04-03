@@ -1,3 +1,6 @@
+
+<!-- /blogs/edit.ejs -->
+
 <% layout("/layouts/boilerplate") %>
 <head>
   <link rel="stylesheet" href="../../public/css/edit.ejs" />
@@ -16,9 +19,19 @@
       >
         <div class="mb-1">
           <label for="subject" class="form-label"><b>Subject</b></label>
-          <textarea name="blog[subject]" class="form-control" required>
-            <%= blog.subject %>
-           </textarea>
+          <textarea name="blog[subject]" class="form-control" required><%= blog.subject %></textarea>
+        </div>
+        <br />
+        <div class="mb-1">
+          <label for="profileImage" class="form-label"><b>profileImage</b></label>
+          <input
+            type="file"
+            class="form-control"
+            name="blog[profileImage]"
+            accept="image/*"
+            required
+          />
+           <img src="../../public/images/<%= blog.profileImage %>" alt="Current Profile Image" class="img-fluid mt-2" />
         </div>
         <br />
         <div class="mb-1">
@@ -64,14 +77,11 @@
             name="blog[content]"
             id="content"
             style="height: 100px"
-          >
-            <%= blog.content %>
-          </textarea>
+          ><%= blog.content %></textarea>
         </div>
 
         <div class="text-center">
           <button
-            type="submit"
             class="btn btn-success mb-3 mt-3 edit-btn mx-auto editnSave"
           >
             Edit & Save

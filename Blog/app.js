@@ -22,9 +22,9 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride("_method"));
 app.use(express.static(__dirname));
 app.engine("ejs", ejsMate);
-app.use(methodOverride("_method"));
 
 // Passport middleware
 const sessionOptions = {
@@ -145,13 +145,44 @@ app.get("/blogs/:id/edit", isLoggedin, isOwner, async (req, res) => {
 
 //Update route
 app.put("/blogs/:id", isLoggedin, isOwner, async (req, res) => {
-  const { id } = req.params;
-  const updatedBlog = await Blog.findByIdAndUpdate(id, {...req.body.blog});
-  await updatedBlog.save();
-  console.log(updatedBlog);
-  req.flash("success", "blog updated successfully...");
-  res.redirect("/blogs");
+  try {
+    const { id } = req.params;
+    const updatedBlog = await Blog.findByIdAndUpdate(id, {...req.body.blog}, {
+      new: true,
+    });
+    if (!updatedBlog) {
+      req.flash("error", "Blog not found.");
+      return res.redirect("/blogs");
+    }
+    req.flash("success", "Blog updated successfully.");
+    res.redirect(`/blogs/${id}`);
+  } catch (error) {
+    console.error("Error updating blog:", error);
+    req.flash("error", "Failed to update blog.");
+    res.redirect(`/blogs/${id}/edit`);
+  }
 });
+
+//Update route
+// app.put("/blogs/:id", isLoggedin, isOwner, async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const updatedBlog = await Blog.findByIdAndUpdate(
+//       id,
+//       { ...req.body.blog },
+//       { new: true }
+//     );
+//     await updatedBlog.save();
+//     req.flash("success", "blog updated successfully...");
+//     res.redirect(`/blogs/${id}`);
+//   }
+//   catch (error) {
+//     console.log(error)
+//   }
+// });
+
+
+
 
 // Delete route
 app.delete("/blogs/:id", isLoggedin, isOwner, async (req, res) => {
