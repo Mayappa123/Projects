@@ -11,7 +11,7 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const Blog = require("./models/blog.js");
 const methodOverride = require("method-override");
-const { isLoggedin, isOwner , saveRedirectUrl } = require("./middleware.js");
+const { isLoggedin, isOwner, saveRedirectUrl } = require("./middleware.js");
 const LocalStrategy = require("passport-local").Strategy;
 
 const port = 8040;
@@ -118,9 +118,6 @@ app.get("/about", (req, res) => {
 app.get("/user/active", (req, res) => {
   res.render("users/activeUser.ejs", { currUser: req.user });
 });
-
-
-
 
 //Blogs related routes...
 //index route
