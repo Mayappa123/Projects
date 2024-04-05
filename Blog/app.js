@@ -119,6 +119,7 @@ app.get("/user/active", (req, res) => {
   res.render("users/activeUser.ejs", { currUser: req.user });
 });
 
+
 //Blogs related routes...
 //index route
 app.get("/blogs", async (req, res) => {
@@ -126,37 +127,12 @@ app.get("/blogs", async (req, res) => {
   res.render("blogs/index.ejs", { Allblogs });
 });
 
+
 // new route
 app.get("/blogs/new", isLoggedin, (req, res) => {
   res.render("blogs/new.ejs");
 });
 
-//edit route
-app.get("/blogs/:id/edit", isLoggedin, isOwner, async (req, res) => {
-  let { id } = req.params;
-  const blog = await Blog.findById(id);
-  if (!blog) {
-    req.flash("error", "Blog does'nt exists...");
-    res.redirect("/blogs");
-  }
-  res.render("blogs/edit.ejs", { blog });
-});
-
-//update route
-app.put("/blogs/:id", isLoggedin, isOwner, async (req, res) => {
-  let { id } = req.params;
-  try {
-    let blog = await Blog.findByIdAndUpdate(id, req.body, { new: true });
-    let updatedBlog = await blog.save();
-    console.log(updatedBlog);
-    req.flash("success", "Blog updated successfully.");
-    res.redirect(`/blogs/${id}`);
-  } catch (error) {
-    console.error("Error updating blog:", error);
-    req.flash("error", "Failed to update blog.");
-    res.redirect(`/blogs/${id}`);
-  }
-});
 
 //show route
 app.get("/blogs/:id", isLoggedin, async (req, res) => {
@@ -169,6 +145,7 @@ app.get("/blogs/:id", isLoggedin, async (req, res) => {
   res.render("blogs/show.ejs", { blog });
 });
 
+
 //create route
 app.post("/blogs", isLoggedin, async (req, res) => {
   const newBlog = new Blog(req.body.blog);
@@ -178,6 +155,36 @@ app.post("/blogs", isLoggedin, async (req, res) => {
   req.flash("success", "New blog created...");
   res.redirect("/blogs");
 });
+
+
+//edit route
+app.get("/blogs/:id/edit", isLoggedin, isOwner, async (req, res) => {
+  let { id } = req.params;
+  const blog = await Blog.findById(id);
+  if (!blog) {
+    req.flash("error", "Blog does'nt exists...");
+    res.redirect("/blogs");
+  }
+  res.render("blogs/edit.ejs", { blog });
+});
+
+
+//update route
+app.put("/blogs/:id", isLoggedin, isOwner, async (req, res) => {
+  console.log(req.body);
+  let { id } = req.params;
+  try {
+    let blog = await Blog.findByIdAndUpdate(id, { ...req.body.blog });
+    await blog.save();
+    req.flash("success", "Blog updated successfully.");
+    res.redirect(`/blogs/${id}`);
+  } catch (error) {
+    console.error("Error updating blog:", error);
+    req.flash("error", "Failed to update blog.");
+    res.redirect(`/blogs/${id}`);
+  }
+});
+
 
 //delete blog
 app.delete("/blogs/:id", isLoggedin, isOwner, async (req, res) => {
@@ -191,6 +198,7 @@ app.delete("/blogs/:id", isLoggedin, isOwner, async (req, res) => {
   }
 });
 
+
 //search blog
 app.get("/blogs/:id/search", isLoggedin, async (req, res) => {
   try {
@@ -198,7 +206,7 @@ app.get("/blogs/:id/search", isLoggedin, async (req, res) => {
     const { search } = req.query;
     const blogs = await Blog.find({
       owner: mongoose.Types.ObjectId(id),
-      subject: { $regex: new RegExp(search, "i")},
+      subject: { $regex: new RegExp(search, "i") },
     });
     res.render("blogs/index.ejs", { blogs });
   } catch (error) {
@@ -206,6 +214,7 @@ app.get("/blogs/:id/search", isLoggedin, async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 });
+
 
 app.listen(port, () => {
   console.log("app is running");
