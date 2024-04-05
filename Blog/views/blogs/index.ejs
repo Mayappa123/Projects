@@ -19,7 +19,35 @@
           </p>
         </div>
       </a>
+
+      <div class="blog-icons mt-0 mx-3">
+        <span class="like-icon">
+          <i class="fa-regular fa-thumbs-up up"></i>
+        </span>
+        <span class="dislike-icon">
+          <i class="fa-regular fa-thumbs-down down"></i>
+        </span>
+      </div>
+
     </div>
     <% }) %>
   </div>
+
+<script>
+  var likeIcons = document.querySelectorAll('.up');
+  var dislikeIcons = document.querySelectorAll('.down');
+
+  likeIcons.forEach(function(icon) {
+    icon.addEventListener('click', function() {
+      icon.style.backgroundColor = 'green';
+    });
+  });
+
+  dislikeIcons.forEach(function(icon) {
+    icon.addEventListener('click', function() {
+      icon.style.backgroundColor = 'red';
+    });
+  });
+</script>
+
 </body>

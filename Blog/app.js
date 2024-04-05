@@ -107,11 +107,11 @@ app.get("/logout", (req, res, next) => {
   });
 });
 
-app.get("/contact", (req, res) => {
+app.get("/contact", isLoggedin, (req, res) => {
   res.render("blogs/contact.ejs");
 });
 
-app.get("/about", (req, res) => {
+app.get("/about", isLoggedin, (req, res) => {
   res.render("blogs/about.ejs");
 });
 
@@ -122,7 +122,7 @@ app.get("/user/active", (req, res) => {
 
 //Blogs related routes...
 //index route
-app.get("/blogs", async (req, res) => {
+app.get("/blogs", isLoggedin, async (req, res) => {
   const Allblogs = await Blog.find({});
   res.render("blogs/index.ejs", { Allblogs });
 });
