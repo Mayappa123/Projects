@@ -1,4 +1,3 @@
-
 <!-- /blogs/edit.ejs -->
 
 <% layout("/layouts/boilerplate") %>
@@ -12,28 +11,17 @@
       <h3 class="text-center">Edit your Blog</h3>
       <form
         method="POST"
-        action="/blogs/<%=blog._id%>?_method=PUT"
+        action="/blogs/<%= blog._id %>?_method=PUT"
         class="form needs-validation"
         novalidate
-        enctype="multipart/form-data"
       >
         <div class="mb-1">
           <label for="subject" class="form-label"><b>Subject</b></label>
-          <textarea name="blog[subject]" class="form-control" required><%= blog.subject %></textarea>
+          <textarea name="blog[subject]" class="form-control" required><%= blog.subject %></textarea
+          >
         </div>
         <br />
-        <div class="mb-1">
-          <label for="profileImage" class="form-label"><b>profileImage</b></label>
-          <input
-            type="file"
-            class="form-control"
-            name="blog[profileImage]"
-            accept="image/*"
-            required
-          />
-           <img src="../../public/images/<%= blog.profileImage %>" alt="Current Profile Image" class="img-fluid mt-2" />
-        </div>
-        <br />
+
         <div class="mb-1">
           <label for="title" class="form-label"><b>Title</b></label>
           <input
@@ -57,14 +45,14 @@
             />
           </div>
           <div class="col-6">
-            <label for="authorName" class="form-label">
-              <b>Author Name</b>
+            <label for="author" class="form-label">
+              <b>Author</b>
             </label>
             <input
               type="text"
-              name="blog[authorName]"
+              name="blog[author]"
               class="form-control"
-              value="<%= blog.authorName %>"
+              value="<%= blog.author %>"
             />
           </div>
         </div>
@@ -77,17 +65,14 @@
             name="blog[content]"
             id="content"
             style="height: 100px"
-          ><%= blog.content %></textarea>
-        </div>
-
-        <div class="text-center">
-          <button
-            class="btn btn-success mb-3 mt-3 edit-btn mx-auto editnSave"
+          ><%= blog.content %></textarea
           >
-            Edit & Save
-          </button>
         </div>
+          <button type="submit" class="btn btn-success mb-3 mt-3 edit-btn editnSave">
+            --Save--
+          </button>
       </form>
     </div>
   </div>
 </body>
+

@@ -1,0 +1,25 @@
+<!-- //blogs/index.ejs -->
+
+<% layout("/layouts/boilerplate") %>
+<head>
+  <link rel="stylesheet" href="../../public/css/blogs.css" />
+</head>
+<body>
+  <div class="blogPost">
+    <% Allblogs.forEach(blog => { %>
+    <div class="blog-container">
+      <a href="/blogs/<%= blog._id %>" class="singleBlog">
+        <div class="blogProfile">          
+          <h5 class="authorName text-black"><%= blog.author %></h5>
+        </div>
+        <div class="blog-header">
+          <h6 class="blog-title"><%= blog.title %></h6>
+          <p class="blog-meta">
+            Posted on <%= blog.date %>
+          </p>
+        </div>
+      </a>
+    </div>
+    <% }) %>
+  </div>
+</body>

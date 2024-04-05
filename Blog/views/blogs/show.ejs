@@ -12,18 +12,13 @@
     <div class="blogPost">
       <div class="blog-container">
         <div class="blogProfile">
-          <img
-            src="../../public/images/<%= blog.profileImage %>"
-            alt="ProfileImage"
-            class="img-fluid rounded-circle blogProfile"
-          />
           <i><%= blog.owner.username %></i>
           <h4 class=""><%= blog.subject %></h4>
         </div>
         <div class="blog-header">
           <h5 class="blog-title"><%= blog.title %></h5>
           <p class="blog-meta">
-            Posted on <%= blog.date %> by <%= blog.authorName %>
+            Posted on <%= blog.date %> by <%= blog.author %>
           </p>
         </div>
         <div class="blog-content">
@@ -32,13 +27,12 @@
 
         <% if(currUser && currUser._id.equals(blog.owner._id)) { %>
         <div class="buttons mt-3" role="group">
-          <a href="/blogs/<%= blog._id %>/edit">
-            <button type="button" class="btn btn-primary editBtn">Edit</button>
+          <a href="/blogs/<%= blog._id %>/edit" class="btn btn-primary editBtn">
+            Edit
           </a>
-          <form action="/blogs/<%=blog._id%>?_method=DELETE" method="POST">
+          <form method="POST" action="/blogs/<%= blog._id %>?_method=DELETE" >
             <button class="btn btn-danger deleteBtn">Delete</button>
           </form>
-
         </div>
         <% } %>
       </div>
