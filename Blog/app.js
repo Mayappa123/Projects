@@ -52,7 +52,13 @@ app.use((req, res, next) => {
   next();
 });
 
-main();
+main()
+.then( ()=> {
+    console.log('connected');
+})
+.catch( (err)=> {
+    console.log('err to connect database');
+});
 
 //Users related routes...
 app.get("/login", (req, res) => {
