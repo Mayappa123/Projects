@@ -3,13 +3,13 @@
 .blogPost {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  justify-content: center; /* Center aligning the items */
+  gap: 20px; /* Adding gap between items */
 }
 
 .blog-container {
   /* width: calc(33.33% - 20px); */
-  width: 100%;
-  margin-bottom: 20px;
+  width: 85%;
   background-color: #f9f9f9;
   border-radius: 8px;
   overflow: hidden;
@@ -24,7 +24,6 @@
 .blog-container:hover {
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  border: 1px solid black;
 }
 
 .blog-header {
@@ -32,7 +31,7 @@
 }
 
 .blog-title {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   font-size: 18px;
   color: orange;
 }
@@ -40,19 +39,33 @@
 .blog-meta {
   font-style: italic;
   color: #666;
+  margin-bottom: 5px;
 }
 
 .blog-content {
   padding: 10px 20px;
 }
 
+.blog-icons {
+  width: 100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+}
+
+.like-icon,
+.dislike-icon {
+  font-size: 20px;
+  opacity: 0.8;
+}
+
 .blogProfile {
-  width: 180px;
-  padding: 5px 0 0 10px;
-  height: 80px;
+  width: 100%;
+  padding: 5px 20px 0 20px; /* Adjusting padding */
+  height: 40px; /* Decreasing height */
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between; /* Adjusting alignment */
 }
 
 .blogProfile img {

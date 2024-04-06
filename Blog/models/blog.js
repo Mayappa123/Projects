@@ -3,10 +3,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const blogSchema = new mongoose.Schema({
-  profileImage: {
-    type: String,
-    required: true
-  },
   date: {
     type: String,
     required: true,
@@ -19,7 +15,7 @@ const blogSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  authorName: {
+  author: {
     type: String,
     required: true
   },
