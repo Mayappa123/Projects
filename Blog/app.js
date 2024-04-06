@@ -1,5 +1,9 @@
 // app.js
 
+if(process.env.NODE_ENV != "production") {
+  require("dotenv").config();
+}
+
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -53,12 +57,12 @@ app.use((req, res, next) => {
 });
 
 main()
-.then( ()=> {
-    console.log('connected');
-})
-.catch( (err)=> {
-    console.log('err to connect database');
-});
+  .then(() => {
+    console.log("connected");
+  })
+  .catch((err) => {
+    console.log("err to connect database");
+  });
 
 //Users related routes...
 app.get("/login", (req, res) => {
@@ -125,7 +129,6 @@ app.get("/user/active", (req, res) => {
   res.render("users/activeUser.ejs", { currUser: req.user });
 });
 
-
 //Blogs related routes...
 //index route
 app.get("/blogs", isLoggedin, async (req, res) => {
@@ -133,12 +136,10 @@ app.get("/blogs", isLoggedin, async (req, res) => {
   res.render("blogs/index.ejs", { Allblogs });
 });
 
-
 // new route
 app.get("/blogs/new", isLoggedin, (req, res) => {
   res.render("blogs/new.ejs");
 });
-
 
 //show route
 app.get("/blogs/:id", isLoggedin, async (req, res) => {
@@ -151,7 +152,6 @@ app.get("/blogs/:id", isLoggedin, async (req, res) => {
   res.render("blogs/show.ejs", { blog });
 });
 
-
 //create route
 app.post("/blogs", isLoggedin, async (req, res) => {
   const newBlog = new Blog(req.body.blog);
@@ -161,7 +161,6 @@ app.post("/blogs", isLoggedin, async (req, res) => {
   req.flash("success", "New blog created...");
   res.redirect("/blogs");
 });
-
 
 //edit route
 app.get("/blogs/:id/edit", isLoggedin, isOwner, async (req, res) => {
@@ -173,7 +172,6 @@ app.get("/blogs/:id/edit", isLoggedin, isOwner, async (req, res) => {
   }
   res.render("blogs/edit.ejs", { blog });
 });
-
 
 //update route
 app.put("/blogs/:id", isLoggedin, isOwner, async (req, res) => {
@@ -191,7 +189,6 @@ app.put("/blogs/:id", isLoggedin, isOwner, async (req, res) => {
   }
 });
 
-
 //delete blog
 app.delete("/blogs/:id", isLoggedin, isOwner, async (req, res) => {
   try {
@@ -205,22 +202,26 @@ app.delete("/blogs/:id", isLoggedin, isOwner, async (req, res) => {
 });
 
 
-//search blog
-app.get("/blogs/:id/search", isLoggedin, async (req, res) => {
+app.get("/blogs/search", isLoggedin, async (req, res) => {
   try {
-    const { id } = req.params;
-    const { search } = req.query;
-    const blogs = await Blog.find({
-      owner: mongoose.Types.ObjectId(id),
-      subject: { $regex: new RegExp(search, "i") },
+    const subject = req.query.subject;
+    const data = await Blog.find({
+      subject: { $regex: new RegExp(subject, "i") },
     });
-    res.render("blogs/index.ejs", { blogs });
+
+    if (data.length > 0) {
+      console.log(data);
+      res.render(`blogs/index.ejs`, { blogs: data });
+    } else {
+      req.flash("error", `Blogs related to "${subject}" not found...`);
+      res.redirect("/blogs");
+    }
   } catch (error) {
     console.error("Error searching blogs:", error);
-    res.status(500).send("Internal Server Error");
+    req.flash("error", "An error occurred while searching blogs...");
+    res.redirect("/blogs");
   }
 });
-
 
 app.listen(port, () => {
   console.log("app is running");

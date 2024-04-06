@@ -9,45 +9,27 @@
     <% Allblogs.forEach(blog => { %>
     <div class="blog-container">
       <a href="/blogs/<%= blog._id %>" class="singleBlog">
-        <div class="blogProfile">          
+        <div class="blogProfile">
           <h5 class="authorName text-black"><%= blog.author %></h5>
         </div>
         <div class="blog-header">
           <h6 class="blog-title"><%= blog.title %></h6>
-          <p class="blog-meta">
-            Posted on <%= blog.date %>
-          </p>
+          <p class="blog-meta">Posted on <%= blog.date %></p>
         </div>
       </a>
 
-      <div class="blog-icons mt-0 mx-3">
-        <span class="like-icon">
-          <i class="fa-regular fa-thumbs-up up"></i>
+      <!-- <div class="blog-icons mt-0 mx-3">
+        <span>
+          <i class="fa-regular fa-heart like-icon"></i> <%= blog.likes %>
         </span>
-        <span class="dislike-icon">
-          <i class="fa-regular fa-thumbs-down down"></i>
+        <span>
+          <i class="fa-regular fa-thumbs-down dislike-icon"></i>
+          <%= blog.dislikes %>
         </span>
-      </div>
-
+      </div> -->
     </div>
     <% }) %>
   </div>
 
-<script>
-  var likeIcons = document.querySelectorAll('.up');
-  var dislikeIcons = document.querySelectorAll('.down');
-
-  likeIcons.forEach(function(icon) {
-    icon.addEventListener('click', function() {
-      icon.style.backgroundColor = 'green';
-    });
-  });
-
-  dislikeIcons.forEach(function(icon) {
-    icon.addEventListener('click', function() {
-      icon.style.backgroundColor = 'red';
-    });
-  });
-</script>
-
+  
 </body>

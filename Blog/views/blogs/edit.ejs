@@ -17,7 +17,8 @@
       >
         <div class="mb-1">
           <label for="subject" class="form-label"><b>Subject</b></label>
-          <textarea name="blog[subject]" class="form-control" required><%= blog.subject %></textarea
+          <textarea name="blog[subject]" class="form-control" required>
+<%= blog.subject %></textarea
           >
         </div>
         <br />
@@ -68,11 +69,13 @@
           ><%= blog.content %></textarea
           >
         </div>
-          <button type="submit" class="btn btn-success mb-3 mt-3 edit-btn editnSave">
-            --Save--
-          </button>
+        <button
+          type="submit"
+          class="btn btn-success mb-3 mt-3 edit-btn editnSave"
+        >
+          --Save--
+        </button>
       </form>
     </div>
   </div>
 </body>
-
