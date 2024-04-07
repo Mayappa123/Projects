@@ -17,16 +17,24 @@ const blogSchema = new mongoose.Schema({
   },
   author: {
     type: String,
-    required: true
+    required: true,
   },
   content: {
     type: String,
     required: true,
   },
+  // likes: {
+  //   type: Number,
+  //   required: true,
+  // },
+  // dislikes: {
+  //   type: Number,
+  //   required: true,
+  // },
   owner: {
     type: Schema.Types.ObjectId,
-    ref: "User"
-  }
+    ref: "User",
+  },
 });
 
 const Blog = mongoose.model("Blog", blogSchema);
