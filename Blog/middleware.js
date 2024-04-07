@@ -2,7 +2,7 @@ const Blog = require("./models/blog");
 
 module.exports.isLoggedin = (req, res, next) => {
   if (!req.isAuthenticated()) {
-    return res.redirect("./login");
+    return res.redirect("/login");
   }
   next();
 };
