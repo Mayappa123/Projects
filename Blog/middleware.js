@@ -1,3 +1,5 @@
+// middleware.js
+
 const Blog = require("./models/blog");
 
 module.exports.isLoggedin = (req, res, next) => {
