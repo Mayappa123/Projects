@@ -1,6 +1,5 @@
 /* navbar.css */
 
-/* Customize navbar background, text color, etc. */
 .navbar {
   background-color: #343a40;
   position: fixed;
@@ -13,27 +12,25 @@
   color: #fff;
 }
 
-/* Style for search input field */
 .search-form {
   display: flex;
 }
 
 .search-input {
-  margin-right: 10px; /* Add some spacing between input field and search button */
+  margin-right: 10px; 
 }
 
 li a {
   text-decoration: none;
 }
 
-/* Show search input on small screens */
 @media (max-width: 768px) {
   .search-form {
-    display: block; /* Display search form as a block on small screens */
+    display: block; 
   }
 
   .search-input {
-    margin-right: 0; /* Reset margin for small screens */
-    margin-bottom: 10px; /* Add some spacing below input field on small screens */
+    margin-right: 0; 
+    margin-bottom: 10px; 
   }
 }

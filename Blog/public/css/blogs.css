@@ -47,16 +47,16 @@
 }
 
 .blog-icons {
-  width: 100px;
+  width: 130px;
   display: flex;
   justify-content: space-around;
   align-items: baseline;
+  margin: 0 0 5px 0;
 }
 
 .like-icon,
 .dislike-icon {
-  font-size: 20px;
-  opacity: 0.8;
+  font-size: 15px;
 }
 
 .blogProfile {
