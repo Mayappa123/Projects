@@ -1,41 +1,36 @@
-const express = require("express");
-const router = express.Router();
-const Blog = require("../models/blog.js")
-const blogController = require("../controllers/blogs.js");
+//routes/blog.js
 
-const multer = require("multer");
-const { storage } = require("../cloudConfig.js");
-const upload = multer({ storage });
+// const express = require("express");
+// const router = express.Router();
+// const Blog = require("../models/blog");
+// const { isLoggedin, isOwner } = require("../middleware");
+// const WrapAsync = require("../utils/WrapAsync");
+// const blogController = require("../controllers/blogs");
 
-router.get("/new", isLoggedIn, blogController.renderNewForm);
+// //Index route
+// router.get("/blogs", isLoggedin, WrapAsync(blogController.index));
 
-router
-  .route("/")
-  .get(WrapAsync(blogController.index)) //index route
-  .post(
-    isLoggedIn,
-    upload.single("blog[image]"),
-    ValidateBlog,
-    WrapAsync(blogController.createBlog)
-  ); //create route
+// //new route
+// router.get("/blog/new", isLoggedin, WrapAsync(blogController.renderNewForm));
 
-router
-  .route("/:id")
-  .get(WrapAsync(blogController.showBlog)) //show route
-  .put(
-    isLoggedIn,
-    isOwner,
-    upload.single("blog[image]"),
-    ValidateBlog,
-    WrapAsync(blogController.updateBlog)
-  ) //update route
-  .delete(isLoggedIn, isOwner, WrapAsync(blogController.destroyBlog)); //delete route
+// router
+//   .route("/blogs/:id")
+//   .get(isLoggedin, WrapAsync(blogController.showBlog))
+//   .put(isLoggedin, isOwner, WrapAsync(blogController.updateBlog))
+//   .delete(isLoggedin, isOwner, WrapAsync(blogController.destroyBlog));
 
-router.get(
-  "/:id/edit",
-  isLoggedIn,
-  isOwner,
-  WrapAsync(blogController.renderEditForm)
-); //edit route
+// //Create route
+// router.post("/newBlog", isLoggedin, WrapAsync(blogController.createBlog));
 
-module.exports = router;
+// //Search route
+// router.get("/:id/search", isLoggedin, WrapAsync(blogController.searchBlog));
+
+// //edit route
+// router.get(
+//   "/blogs/:id/edit",
+//   isLoggedin,
+//   isOwner,
+//   WrapAsync(blogController.renderEditForm)
+// );
+
+// module.exports = router;
