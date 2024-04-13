@@ -50,6 +50,9 @@ a {
   opacity: 0.7;
   padding: 0.5rem 0.75rem;
 }
+.user:hover {
+  cursor: pointer;
+}
 .nav-option:hover {
   opacity: 1;
 }
