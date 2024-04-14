@@ -141,7 +141,6 @@ a {
 .sticky-nav-icons img:hover {
   opacity: 1;
 }
-
 .sticky-nav-option {
   display: flex;
   justify-content: center;
@@ -234,7 +233,6 @@ a {
   height: 2.25rem;
   width: 2rem;
 }
-
 .player-controls-icon {
   height: 1rem;
   margin: 0 1.75rem;
@@ -273,7 +271,6 @@ a {
   border-radius: 50%;
   margin-top: -6px;
 }
-
 .controls {
   display: flex;
   justify-content: space-between;
